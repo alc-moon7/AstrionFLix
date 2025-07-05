@@ -908,7 +908,7 @@ function searchVideos(query) {
                 // Play featured video
                 if (playFeatured) {
                     playFeatured.addEventListener('click', () => {
-                        openVideoModal('https://www.youtube.com/embed/MWOlnZSnXJo');
+                        openVideoModal('https://www.youtube.com/embed/8jpI2IWhj_Q');
                     });
                 }
                 
