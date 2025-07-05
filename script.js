@@ -4,6 +4,31 @@
 const videos = [
 
 
+          {
+        id: -2,
+        title: "Chokkor 302 (চক্কর)",
+        description: "Bangla Movie",
+        thumbnail: "https://upload.wikimedia.org/wikipedia/en/7/72/Chokkor_302_official_logo.jpg",
+        videoUrl: "https://streamtape.com/e/zXeqgMqROPfYz0y",
+        year: 2025,
+        genre: "Action/Thriller",
+        duration: "02h 04m",
+        isHindi: false,
+        isDaagi: true,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: false,
+        isAction: true,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+
+    },
+
+
       {
         id: -1,
         title: "Jawan: Extended Version",
@@ -24,8 +49,13 @@ const videos = [
         isDrama: false,
         isComedy: false,
         type: "movie"
+
+
     },
-    {
+ 
+
+
+       {
         id: 0,
         title: "Black widow",
         description: "MCU",
