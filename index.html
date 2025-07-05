@@ -1391,9 +1391,9 @@
     </video>
 
     <div class="hero-content">
-        <h2>Now Showing: <br>The House Next Door</h2>
+        <h2>Now Showing: <br>LOKI Season 1</h2>
         <p>
-            Do you really know who lives NEXT DOOR? 😈
+            After stealing the Tesseract, Loki comes into contact with a mysterious organization that gives him an ominous ultimatum, either fix the timeline or cease to exist completely.
         </p>
         <div class="hero-buttons">
             <button class="btn btn-primary moon-btn" id="playFeatured">
@@ -1576,6 +1576,165 @@
         // DATA MANAGEMENT
         // ========================
         const videos = [
+
+
+          {
+        id: -4,
+        title: "Loki S01 - EP01",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki1.png",
+        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        year: 2021,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLoki : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+          },
+
+           {
+        id: -5,
+        title: "Loki S01 - EP02",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki2.png",
+        videoUrl: "https://streamtape.com/e/RgOQXwJyY9Idw9X",
+        year: 2021,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLoki : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: false,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+
+    },
+
+
+      {
+        id: -6,
+        title: "Loki S01 - EP03",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki3.png",
+        videoUrl: "https://streamtape.com/e/2WRPlk1WwouZ02B",
+        year: 2021,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLoki : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: false,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+
+    },
+      {
+        id: -7,
+        title: "Loki S01 - EP04",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki4.png",
+        videoUrl: "https://streamtape.com/e/RkWjR3v7XVhdryV",
+        year: 2021,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLoki : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: false,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+
+    },
+
+              {
+        id: -8,
+        title: "Loki S01 - EP05",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki5.png",
+        videoUrl: "https://streamtape.com/e/kzJoPGmBdJsY7J",
+        year: 2021,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLoki : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: false,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+        
+
+
+    },
+
+           {
+        id: -9,
+        title: "Loki S01 - EP06",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki6.png",
+        videoUrl: "https://www.youtube.com/embed/KoEQs9VlWUA",
+        year: 2021,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLoki : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+
+    },
+
+ 
+
+         
+
+         
+
+          
 
         {
         id: -3,
@@ -2110,6 +2269,7 @@
             
             // Create carousel sections
             const sections = [
+                { id: 'lokiCarousel', title: 'Loki Season 1', filter: video => video.isLoki },
                 { id: 'trendingCarousel', title: 'Trending Now', filter: video => video.isTrending },
                 { id: 'arrivedCarousel', title: 'Squid Game Season 3', filter: video => video.isArrived },
                 { id: 'newReleasesCarousel', title: 'Panchayat Season 4', filter: video => video.isNew },
@@ -2318,7 +2478,7 @@
             
             // Play featured video
             playFeatured.addEventListener('click', () => {
-                openVideoModal('https://www.youtube.com/embed/cb0SLQRt83k');
+                openVideoModal('https://www.youtube.com/embed/lDToq9SuEmI');
             });
             
             // Carousel arrows
