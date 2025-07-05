@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstrionFLix | Moon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Lower Third Banner
+    <div class="lower-third-banner">
+        <div class="lower-third-content">
+            <span class="coming-soon-text">Every Friday New Releases😃</span>
+            <span class="lower-third-message">Upcoming Movies Maa (Horror). Stay tuned for updates 😉.</span>
+        </div>
+        <button class="close-banner" aria-label="Close banner">&times;</button>
+    </div> -->
+
+    <!-- Browser Recommendation Popup  -->
+    <div class="popup-container" id="browserPopup">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Browser Recommendation</h3>
+            <p>Please use <span class="highlight">Brave browser</span> for avoiding ads!</p>
+            <div class="popup-progress"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="assets/logo.png" alt="Prime Moon Logo" class="moon-logo" />
+            <h1>AstrionFLix <span class="moon-beta">(Beta)</span></h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-section="movies">Movies</a></li>
+                <li><a href="#" class="nav-link" data-section="tv">TV Shows</a></li>
+                <li><a href="#" class="nav-link" data-section="mylist">My List</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search..." aria-label="Search videos">
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="user-profile">
+                <img src="assets/logo.png" alt="User profile" class="avatar" />
+                <span class="moon-highlight">Free $0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner" id="homeSection">
+          <video class="hero-video" autoplay muted loop playsinline>
+    <source src="assets/videoplayback.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+        <div class="hero-content">
+            <h2>Now Showing: <br>Jawan</h2>
+            <p>A prison warden recruits inmates to commit outrageous crimes that shed light on corruption and injustice — and that lead him to an unexpected reunion..</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary moon-btn" id="playFeatured">
+                    <i class="fas fa-play"></i> Watch Trailer
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i> NB: Please use Brave Browser or Pop up blocker.
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="content-section" id="contentSection">
+        <div class="section-header">
+            <h3>Browse Content</h3>
+            <div class="filters">
+                <button class="btn btn-secondary" id="toggleGenres">Genres</button>
+                <button class="btn btn-secondary" id="toggleFilters">Filters</button>
+            </div>
+        </div>
+        
+        <div class="genre-tabs" id="genreTabs">
+            <div class="genre-tab active" data-genre="all">All</div>
+            <div class="genre-tab" data-genre="Action">Action</div>
+            <div class="genre-tab" data-genre="Special">Special</div>
+            <div class="genre-tab" data-genre="Drama">Drama</div>
+            <div class="genre-tab" data-genre="Sci-Fi">Sci-Fi</div>
+            <div class="genre-tab" data-genre="Thriller">Thriller</div>
+            <div class="genre-tab" data-genre="Fantasy">Fantasy</div>
+        </div>
+        
+        <!-- Filter Controls -->
+        <div class="filter-controls" id="filterControls" style="display: none;">
+            <select class="filter-select" id="yearFilter">
+                <option value="all">All Years</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+            </select>
+            <select class="filter-select" id="typeFilter">
+                <option value="all">All Types</option>
+                <option value="movie">Movies</option>
+                <option value="tv">TV Shows</option>
+            </select>
+            <select class="filter-select" id="sortFilter">
+                <option value="default">Sort By</option>
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="popular">Most Popular</option>
+            </select>
+        </div>
+
+        <!-- Skeleton Loader -->
+        <div class="skeleton-loader" id="skeletonLoader">
+            <div class="skeleton-card">
+                <div class="skeleton-thumb"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line short"></div>
+                </div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-thumb"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line short"></div>
+                </div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-thumb"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line short"></div>
+                </div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-thumb"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line short"></div>
+                </div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-thumb"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line short"></div>
+                </div>
+            </div>
+        </div>
+
+
+          <!-- Trending Carousel -->
+        <div class="carousel-section">
+            <div class="section-header">
+                <h3>Trending Now</h3>
+            </div>
+            <div class="carousel">
+                <div class="carousel-container" id="trendingCarousel"></div>
+                <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+
+              <!-- Newly Arrived -->
+        <div class="carousel-section">
+            <div class="section-header">
+                <h3>Squid Game Season 3</h3>
+            </div>
+            <div class="carousel">
+                <div class="carousel-container" id="arrivedCarousel"></div>
+                <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+
+                     <!-- New Releases Carousel -->
+        <div class="carousel-section">
+            <div class="section-header">
+                <h3>Panchayat Season 4</h3>
+            </div>
+            <div class="carousel">
+                <div class="carousel-container" id="newReleasesCarousel"></div>
+                <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+
+
+
+                    <!-- Bangla -->
+        <div class="carousel-section">
+            <div class="section-header">
+                <h3>Bangla Movies</h3>
+            </div>
+            <div class="carousel">
+                <div class="carousel-container" id="newdaagiCarousel"></div>
+                <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        
+
+               <!-- Hindi -->
+        <div class="carousel-section">
+            <div class="section-header">
+                <h3>Hindi Movies</h3>
+            </div>
+            <div class="carousel">
+                <div class="carousel-container" id="hindiCarousel"></div>
+                <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        
+
+
+               <!-- Popular Carousel -->
+        <div class="carousel-section">
+            <div class="section-header">
+                <h3>Popular Shows</h3>
+            </div>
+            <div class="carousel">
+                <div class="carousel-container" id="popularCarousel"></div>
+                <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+  
+
+
+           <!-- Horror Carousel -->
+        <div class="carousel-section">
+            <div class="section-header">
+                <h3>Horror  👻<span style="font-size: 0.7em; color: var(--text-secondary);">   (new)</span></h3>
+            </div>
+            <div class="carousel">
+                <div class="carousel-container" id="horrorCarousel"></div>
+                <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </main>
+
+
+
+          <!-- Action Carousel -->
+        <div class="carousel-section">
+            <div class="section-header">
+                <h3>Action</h3>
+            </div>
+            <div class="carousel">
+                <div class="carousel-container" id="actionCarousel"></div>
+                <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        
+
+
+            <!-- Drama Carousel -->
+        <div class="carousel-section">
+            <div class="section-header">
+                <h3>Drama</h3>
+            </div>
+            <div class="carousel">
+                <div class="carousel-container" id="dramaCarousel"></div>
+                <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+
+
+            <!-- Special Carousel -->
+        <div class="carousel-section">
+            <div class="section-header">
+                <h3>Experimental MKV Player<span style="font-size: 0.7em; color: var(--text-secondary);">(Only Sam Online)</span></h3>
+            </div>
+            <div class="carousel">
+                <div class="carousel-container" id="comedyCarousel"></div>
+                <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+    <!-- My List Section -->
+    <section class="my-list-section" id="myListSection" style="display: none;">
+        <div class="section-header">
+            <h3>My List</h3>
+        </div>
+        <div class="carousel">
+            <div class="carousel-container" id="myListCarousel"></div>
+            <div class="empty-list" id="emptyListMessage">
+                <i class="fas fa-bookmark"></i>
+                <h4>Your List is Empty</h4>
+                <p>Add movies and TV shows to your list to watch later</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal" aria-label="Close video">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-container">
+                <iframe id="videoPlayer" src="" allowfullscreen title="Video player"></iframe>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Get to Know Us</h4>
+                <ul>
+                    <li><a href="#">About AstrionFLix</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">AstrionFLix Science</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>AstrionFLix Payment</h4>
+                <ul>
+                    <li><a href="#">AstrionFLix Business Card</a></li>
+                    <li><a href="#">Shop with Points</a></li>
+                    <li><a href="#">Reload Your Balance</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Let Us Help You</h4>
+                <ul>
+                    <li><a href="#">Your Account</a></li>
+                    <li><a href="#">Your Orders</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 Nafisa Tabassum Sraboni - AstrionFLix™</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+
+
+
+<meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self'; 
+               script-src 'self' cdnjs.cloudflare.com; 
+               style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com;
+               img-src 'self' data:;
+               frame-src youtube.com vimeo.com;
+               connect-src 'self'">
+</body>
+</html>
