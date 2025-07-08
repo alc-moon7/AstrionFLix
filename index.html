@@ -2437,6 +2437,12 @@
             
             renderCarousel(document.getElementById('searchResults'), filteredVideos);
         }
+
+          fetch('/.netlify/functions/getPost?id=1')
+    .then(res => res.json())
+    .then(data => {
+      console.log('Post:', data);
+    });
     </script>
 </body>
 </html>
