@@ -1,4 +1,4 @@
-export async function handler() {
+exports.handler = async () => {
     return {
         statusCode: 200,
         body: JSON.stringify([
@@ -606,6 +606,4 @@ export async function handler() {
     },
         ])
     };
-}
-
-//minor bug fix
+};
