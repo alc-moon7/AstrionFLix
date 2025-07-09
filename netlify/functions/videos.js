@@ -133,7 +133,7 @@ exports.handler = async () => {
         title: "Loki S01 - EP06",
         description: "Hindi Movie",
         thumbnail: "assets/loki6.png",
-        videoUrl: "https://www.youtube.com/embed/KoEQs9VlWUA",
+        videoUrl: "https://streamtape.com/e/b3m0QALMlYuPwr4",
         year: 2021,
         genre: "Sci-Fi",
         duration: "02h 04m",
