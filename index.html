@@ -327,7 +327,7 @@
     width: 100%;
     height: 100%;
     background: url('assets/cover.jpg') center/cover no-repeat;
-    opacity: 0.20; /* <<< adjust this to control watermark strength */
+    opacity: 0.05; /* <<< adjust this to control watermark strength */
     z-index: -1;
 }
 
@@ -352,7 +352,7 @@
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    opacity: 0.6; /* You can adjust this for better contrast */
+    opacity: 0.40; /* You can adjust this for better contrast */
 }
 
         .hero-content {
@@ -371,20 +371,23 @@
             line-height: 1.2;
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
+            opacity: 0.50;
         }
 
         .hero-content p {
-            font-size: 1.25rem;
+            font-size: 0.90rem;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
             line-height: 1.6;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            opacity: 0.20;
         }
 
         .hero-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            opacity: 0.60;
         }
 
         /* Responsive adjustments */
