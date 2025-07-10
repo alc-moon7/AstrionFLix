@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstrionFLix | Futuristic Streaming Platform</title>
-    <link rel="icon" href="assets/logo.png" type="image/png">
+    <title>AstrionFlix | Cosmic Streaming Experience</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
         /* ================ */
         /* GLOBAL VARIABLES */
@@ -1337,9 +1339,37 @@
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
+        
+        /* ================= */
+        /* COSMIC BACKGROUND */
+        /* ================= */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration, 5s) infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
+    <!-- Cosmic Background -->
+    <div class="stars" id="stars"></div>
+    
     <!-- Loading spinner -->
     <div class="loader" id="loader">
         <div class="spinner"></div>
@@ -1352,7 +1382,7 @@
                 <i class="fas fa-shield-alt"></i>
             </div>
             <h3>Browser Recommendation</h3>
-            <p>Please use <span class="highlight">Brave browser</span> for avoiding ads!</p>
+            <p>For the best experience, use <span class="highlight">Brave browser</span></p>
             <div class="popup-progress"></div>
         </div>
     </div>
@@ -1365,9 +1395,9 @@
             <header class="glass-effect">
                 <div class="logo">
                     <div class="avatar pulse">
-                        <img src="assets/logo.png" alt="AstrionFLix Logo">
+                        <i class="fas fa-rocket"></i>
                     </div>
-                    <h1>AstrionFLix <span class="moon-beta">(Beta)</span></h1>
+                    <h1>AstrionFlix <span class="moon-beta">(Beta)</span></h1>
                 </div>
 
                 <nav>
@@ -1400,21 +1430,21 @@
             <!-- Hero Banner -->
             <section class="hero-banner" id="homeSection">
                 <video autoplay muted loop playsinline class="background-video">
-                    <source src="assets/videoplayback.mp4" type="video/webm">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-night-sky-with-stars-rotating-1002-large.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
 
                 <div class="hero-content">
-                    <h2>Now Showing: <br>LOKI Season 1 & 2</h2>
+                    <h2>Now Streaming: <br>LOKI Season 1 & 2</h2>
                     <p>
-                       TVA - Time Varience Authority
+                       TVA - Time Variance Authority: Experience the multiverse like never before
                     </p>
                     <div class="hero-buttons">
                         <button class="btn btn-primary" id="playFeatured">
                             <i class="fas fa-play"></i> Watch Trailer
                         </button>
                         <button class="btn btn-secondary">
-                            <i class="fas fa-info-circle"></i> NB: Please use Brave Browser or Pop up blocker.
+                            <i class="fas fa-info-circle"></i> Use Brave Browser for best experience
                         </button>
                     </div>
                 </div>
@@ -1423,6 +1453,54 @@
             <!-- Content Sections -->
             <main class="content-section" id="contentSection">
                 <!-- Content sections will be dynamically generated -->
+                <div class="section-header">
+                    <h3>Featured Content</h3>
+                    <div class="filter-controls">
+                        <select class="filter-select" id="genreFilter">
+                            <option value="all">All Genres</option>
+                            <option value="action">Action</option>
+                            <option value="drama">Drama</option>
+                            <option value="sci-fi">Sci-Fi</option>
+                            <option value="comedy">Comedy</option>
+                        </select>
+                        <select class="filter-select" id="sortFilter">
+                            <option value="newest">Newest First</option>
+                            <option value="popular">Most Popular</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="carousel">
+                    <div class="carousel-container" id="featuredCarousel">
+                        <!-- Featured content will be loaded here -->
+                    </div>
+                    <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <!-- Additional sections -->
+                <div class="section-header">
+                    <h3>New Releases</h3>
+                </div>
+                <div class="carousel">
+                    <div class="carousel-container" id="newReleasesCarousel">
+                        <!-- New releases will be loaded here -->
+                    </div>
+                    <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <div class="section-header">
+                    <h3>Trending Now</h3>
+                </div>
+                <div class="carousel">
+                    <div class="carousel-container" id="trendingCarousel">
+                        <!-- Trending content will be loaded here -->
+                    </div>
+                    <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+                </div>
             </main>
 
             <!-- My List Section -->
@@ -1456,32 +1534,44 @@
             <footer class="glass-effect">
                 <div class="footer-content">
                     <div class="footer-column">
-                        <h4>Get to Know Us</h4>
+                        <h4>Explore</h4>
                         <ul>
-                            <li><a href="#">About AstrionFLix</a></li>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Movies</a></li>
+                            <li><a href="#">TV Shows</a></li>
+                            <li><a href="#">New Releases</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Account</h4>
+                        <ul>
+                            <li><a href="#">Your Profile</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
                             <li><a href="#">Careers</a></li>
-                            <li><a href="#">AstrionFLix Science</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Legal</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4>AstrionFLix Payment</h4>
+                        <h4>Connect</h4>
                         <ul>
-                            <li><a href="#">AstrionFLix Business Card</a></li>
-                            <li><a href="#">Shop with Points</a></li>
-                            <li><a href="#">Reload Your Balance</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Let Us Help You</h4>
-                        <ul>
-                            <li><a href="#">Your Account</a></li>
-                            <li><a href="#">Your Orders</a></li>
-                            <li><a href="#">Help</a></li>
+                            <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="copyright">
-                    <p>© 2025 Nafisa Tabassum Sraboni - AstrionFLix™</p>
+                    <p>© 2025 Nafisa Tabassum Sraboni - AstrionFlix™ | The Future of Streaming</p>
                 </div>
             </footer>
         </div>
@@ -1492,7 +1582,7 @@
             <div class="login-container">
                 <div class="login-form glass-effect">
                     <h2>Welcome Back</h2>
-                    <p>Sign in to continue your streaming experience</p>
+                    <p>Sign in to continue your cosmic streaming journey</p>
                     
                     <div class="form-group">
                         <label for="loginUsername">Username</label>
@@ -1525,8 +1615,8 @@
                     <div class="logout-icon pulse">
                         <i class="fas fa-sign-out-alt"></i>
                     </div>
-                    <h2>You've Signed Out</h2>
-                    <p>Thank you for using AstrionFLix. You've been successfully signed out of your account.</p>
+                    <h2>Journey Complete</h2>
+                    <p>You've been successfully signed out of your AstrionFlix account.</p>
                     <button class="logout-btn" id="backToLogin">
                         <i class="fas fa-arrow-left"></i> Back to Login
                     </button>
@@ -1536,6 +1626,37 @@
     </main>
 
     <script>
+        // ========================
+        // COSMIC BACKGROUND
+        // ========================
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starsCount = 150;
+            
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                // Random size (0.5px to 2px)
+                const size = Math.random() * 1.5 + 0.5;
+                
+                // Random animation duration (3s to 10s)
+                const duration = Math.random() * 7 + 3;
+                
+                star.style.left = `${posX}%`;
+                star.style.top = `${posY}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.setProperty('--duration', `${duration}s`);
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
         // ========================
         // AUTHENTICATION MANAGEMENT
         // ========================
@@ -1596,14 +1717,64 @@
         async function fetchVideos() {
             try {
                 showLoader();
-                const response = await fetch('/.netlify/functions/videos');
-                const videos = await response.json();
-                hideLoader();
-                return videos;
+                // Simulate API call with demo data
+                return [
+                    {
+                        id: "loki-s1",
+                        title: "Loki: Season 1",
+                        year: "2021",
+                        genre: "Sci-Fi, Action",
+                        duration: "45m",
+                        thumbnail: "https://image.tmdb.org/t/p/w500/kEl2t3OhXc3Zb9FBh1AuYzRTgZp.jpg",
+                        videoUrl: "https://www.youtube.com/embed/nW948Va-l10",
+                        isLoki: true
+                    },
+                    {
+                        id: "loki-s2",
+                        title: "Loki: Season 2",
+                        year: "2023",
+                        genre: "Sci-Fi, Adventure",
+                        duration: "48m",
+                        thumbnail: "https://image.tmdb.org/t/p/w500/voHUmluYmKyleFkTu3lOXQG702u.jpg",
+                        videoUrl: "https://www.youtube.com/embed/dug56u8NN7g",
+                        isLokitwo: true
+                    },
+                    {
+                        id: "squid-game",
+                        title: "Squid Game: Season 3",
+                        year: "2024",
+                        genre: "Thriller, Drama",
+                        duration: "55m",
+                        thumbnail: "https://image.tmdb.org/t/p/w500/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg",
+                        videoUrl: "https://www.youtube.com/embed/oqxAJKy0ii4",
+                        isArrived: true
+                    },
+                    {
+                        id: "panchayat",
+                        title: "Panchayat: Season 4",
+                        year: "2024",
+                        genre: "Comedy, Drama",
+                        duration: "35m",
+                        thumbnail: "https://image.tmdb.org/t/p/w500/5M68X7vq7VeF6OOSjf4m8w3vPGT.jpg",
+                        videoUrl: "https://www.youtube.com/embed/8X_wD_0zqUw",
+                        isNew: true
+                    },
+                    {
+                        id: "dune",
+                        title: "Dune: Part Two",
+                        year: "2024",
+                        genre: "Sci-Fi, Adventure",
+                        duration: "2h 46m",
+                        thumbnail: "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
+                        videoUrl: "https://www.youtube.com/embed/Way9Dexny3w",
+                        isTrending: true
+                    }
+                ];
             } catch (error) {
                 console.error('Error fetching videos:', error);
-                hideLoader();
                 return [];
+            } finally {
+                hideLoader();
             }
         }
 
@@ -1648,6 +1819,9 @@
         const loginError = document.getElementById('loginError');
         const backToLogin = document.getElementById('backToLogin');
         const loader = document.getElementById('loader');
+        const featuredCarousel = document.getElementById('featuredCarousel');
+        const newReleasesCarousel = document.getElementById('newReleasesCarousel');
+        const trendingCarousel = document.getElementById('trendingCarousel');
 
         // ========================
         // HELPER FUNCTIONS
@@ -1664,9 +1838,35 @@
         // INITIALIZATION
         // ========================
         document.addEventListener('DOMContentLoaded', async () => {
+            createStars();
             initTheme();
             setupEventListeners();
             updateAuthUI();
+            
+            // Initialize GSAP animations
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Animate hero content
+            gsap.from('.hero-content', {
+                duration: 1.5,
+                y: 50,
+                opacity: 0,
+                ease: "power3.out"
+            });
+            
+            // Animate section headers
+            gsap.utils.toArray('.section-header').forEach(section => {
+                gsap.from(section, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 85%"
+                    },
+                    duration: 0.8,
+                    y: 30,
+                    opacity: 0,
+                    ease: "back.out(1)"
+                });
+            });
             
             // Only fetch videos if authenticated
             if (isAuthenticated()) {
@@ -1709,44 +1909,19 @@
         // RENDERING FUNCTIONS
         // ========================
         function renderAllCarousels() {
-            contentSection.innerHTML = '';
+            if (!videos || videos.length === 0) return;
             
-            // Create carousel sections
-            const sections = [
-                { id: 'lokiCarousel', title: 'Loki Season 1', filter: video => video.isLoki },
-                { id: 'lokitwoCarousel', title: 'Loki Season 2', filter: video => video.isLokitwo },
-                { id: 'trendingCarousel', title: 'Trending Now', filter: video => video.isTrending },
-                { id: 'arrivedCarousel', title: 'Squid Game Season 3', filter: video => video.isArrived },
-                { id: 'newReleasesCarousel', title: 'Panchayat Season 4', filter: video => video.isNew },
-                { id: 'newdaagiCarousel', title: 'Bangla Movies', filter: video => video.isDaagi },
-                { id: 'hindiCarousel', title: 'Hindi Movies', filter: video => video.isHindi },
-                { id: 'popularCarousel', title: 'Popular Shows', filter: video => video.isPopular },
-                { id: 'horrorCarousel', title: 'Horror 👻 (new)', filter: video => video.isHorror },
-                { id: 'actionCarousel', title: 'Action', filter: video => video.isAction },
-                { id: 'dramaCarousel', title: 'Drama', filter: video => video.isDrama },
-                { id: 'comedyCarousel', title: 'Experimental MKV Player (Only Sam Online)', filter: video => video.isComedy }
-            ];
+            // Render featured carousel
+            const featuredVideos = videos.filter(video => video.isLoki || video.isLokitwo);
+            renderCarousel(featuredCarousel, featuredVideos);
             
-            sections.forEach(section => {
-                const filteredVideos = videos.filter(section.filter);
-                if (filteredVideos.length > 0) {
-                    const sectionElement = document.createElement('div');
-                    sectionElement.className = 'carousel-section';
-                    sectionElement.innerHTML = `
-                        <div class="section-header">
-                            <h3>${section.title}</h3>
-                        </div>
-                        <div class="carousel">
-                            <div class="carousel-container" id="${section.id}"></div>
-                            <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
-                            <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    `;
-                    contentSection.appendChild(sectionElement);
-                    
-                    renderCarousel(document.getElementById(section.id), filteredVideos);
-                }
-            });
+            // Render new releases
+            const newReleases = videos.filter(video => video.isNew || video.isArrived);
+            renderCarousel(newReleasesCarousel, newReleases);
+            
+            // Render trending
+            const trending = videos.filter(video => video.isTrending);
+            renderCarousel(trendingCarousel, trending);
         }
 
         function renderCarousel(container, videos) {
@@ -1812,6 +1987,21 @@
                 
                 container.appendChild(videoCard);
             });
+            
+            // Animate cards
+            gsap.utils.toArray('.video-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 90%"
+                    },
+                    duration: 0.6,
+                    y: 40,
+                    opacity: 0,
+                    delay: i * 0.05,
+                    ease: "back.out(1)"
+                });
+            });
         }
 
         function renderMyList() {
@@ -1848,6 +2038,14 @@
             videoPlayer.src = videoUrl;
             videoModal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // Animate modal in
+            gsap.from('.modal-content', {
+                duration: 0.5,
+                scale: 0.9,
+                opacity: 0,
+                ease: "back.out(1.7)"
+            });
         }
 
         function closeVideoModal() {
@@ -2039,7 +2237,7 @@
             
             const filteredVideos = videos.filter(video => 
                 video.title.toLowerCase().includes(query.toLowerCase()) || 
-                video.description.toLowerCase().includes(query.toLowerCase())
+                (video.genre && video.genre.toLowerCase().includes(query.toLowerCase()))
             );
             
             renderCarousel(document.getElementById('searchResults'), filteredVideos);
