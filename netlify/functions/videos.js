@@ -141,7 +141,7 @@ exports.handler = async () => {
         isHindi: false,
         isDaagi: false,
         isArrived: false,
-        isTrending: true,
+        isTrending: false,
         isHorror: false,
         isNew: false,
         isPopular: true,
