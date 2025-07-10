@@ -186,7 +186,7 @@
         /* HEADER STYLES */
         /* ============= */
         header {
-    background: transparent;
+    background: transparent; /* Fully transparent */
     padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
@@ -196,10 +196,11 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    box-shadow: var(--header-shadow);
     transition: transform 0.3s ease, background 0.3s ease;
     will-change: transform;
-    border-bottom: 1px solid rgba(0, 198, 255, 0.1);
+    /* Removed: backdrop-filter, box-shadow, and border (if needed) */
+    /* Optional: Keep a very subtle border if desired */
+    border-bottom: 1px solid transparent; /* Fully invisible border */
 }
         
         header.hide {
