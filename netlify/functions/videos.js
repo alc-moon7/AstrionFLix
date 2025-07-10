@@ -611,7 +611,7 @@ exports.handler = async () => {
         title: "Loki S02 - EP01",
         description: "Hindi Movie",
         thumbnail: "assets/loki7.png",
-        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        videoUrl: "https://streamtape.com/e/V8Qq2gXG0VcKMA4",
         year: 2023,
         genre: "Sci-Fi",
         duration: "02h 04m",
@@ -632,11 +632,11 @@ exports.handler = async () => {
 
           {
 
-        id: 21,
+        id: 22,
         title: "Loki S02 - EP02",
         description: "Hindi Movie",
         thumbnail: "assets/loki8.png",
-        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        videoUrl: "https://streamtape.com/e/4qBOwwjYaVIKXR1",
         year: 2023,
         genre: "Sci-Fi",
         duration: "02h 04m",
@@ -658,11 +658,11 @@ exports.handler = async () => {
 
         {
 
-        id: 21,
+        id: 23,
         title: "Loki S02 - EP03",
         description: "Hindi Movie",
         thumbnail: "assets/loki9.png",
-        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        videoUrl: "https://streamtape.com/e/782YzgQaBWTAA20",
         year: 2023,
         genre: "Sci-Fi",
         duration: "02h 04m",
@@ -682,11 +682,11 @@ exports.handler = async () => {
           },
          {
 
-        id: 21,
+        id: 24,
         title: "Loki S02 - EP04",
         description: "Hindi Movie",
         thumbnail: "assets/loki10.png",
-        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        videoUrl: "https://streamtape.com/e/eALdra26oMI23g",
         year: 2023,
         genre: "Sci-Fi",
         duration: "02h 04m",
@@ -707,11 +707,11 @@ exports.handler = async () => {
 
            {
 
-        id: 21,
+        id: 25,
         title: "Loki S02 - EP05",
         description: "Hindi Movie",
         thumbnail: "assets/loki11.png",
-        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        videoUrl: "https://streamtape.com/e/eALdra26oMI23g",
         year: 2023,
         genre: "Sci-Fi",
         duration: "02h 04m",
@@ -732,11 +732,11 @@ exports.handler = async () => {
 
           {
 
-        id: 21,
+        id: 26,
         title: "Loki S02 - EP06",
         description: "Hindi Movie",
         thumbnail: "assets/loki12.png",
-        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        videoUrl: "https://streamtape.com/e/eALdra26oMI23g",
         year: 2023,
         genre: "Sci-Fi",
         duration: "02h 04m",
