@@ -186,22 +186,21 @@
         /* HEADER STYLES */
         /* ============= */
         header {
-            background: rgba(10, 14, 21, 0.8);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: var(--header-shadow);
-            transition: transform 0.3s ease, background 0.3s ease;
-            will-change: transform;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 198, 255, 0.1);
-        }
+    background: transparent;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: var(--header-shadow);
+    transition: transform 0.3s ease, background 0.3s ease;
+    will-change: transform;
+    border-bottom: 1px solid rgba(0, 198, 255, 0.1);
+}
         
         header.hide {
             transform: translateY(-100%);
