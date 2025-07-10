@@ -763,7 +763,7 @@ exports.handler = async () => {
         thumbnail: "https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/6587/1366587-i-f725eac0c939",
         videoUrl: "https://streamtape.com/e/GebGRz3mvVT16rA",
         year: 2022,
-        genre: "Sci-Fi",
+        genre: "Drama/Romance",
         duration: "02h 04m",
         isSouth : true,
         isHindi: false,
