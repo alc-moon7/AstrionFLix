@@ -604,6 +604,156 @@ exports.handler = async () => {
         isComedy: false,
         type: "movie"
     },
+
+
+      {
+        id: 21,
+        title: "Loki S02 - EP01",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki7.png",
+        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        year: 2023,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLokitwo : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "series"
+
+          },
+
+          {
+
+        id: 21,
+        title: "Loki S02 - EP02",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki8.png",
+        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        year: 2023,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLokitwo : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+          },
+
+
+        {
+
+        id: 21,
+        title: "Loki S02 - EP03",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki9.png",
+        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        year: 2023,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLokitwo : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+          },
+         {
+
+        id: 21,
+        title: "Loki S02 - EP04",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki10.png",
+        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        year: 2023,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLokitwo : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+          },
+
+           {
+
+        id: 21,
+        title: "Loki S02 - EP05",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki11.png",
+        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        year: 2023,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLokitwo : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+          },
+
+          {
+
+        id: 21,
+        title: "Loki S02 - EP06",
+        description: "Hindi Movie",
+        thumbnail: "assets/loki12.png",
+        videoUrl: "https://streamtape.com/e/p28jr4d9wDCraLl",
+        year: 2023,
+        genre: "Sci-Fi",
+        duration: "02h 04m",
+        isLokitwo : true,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+          },
         ])
     };
 };
