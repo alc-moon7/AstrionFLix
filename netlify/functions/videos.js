@@ -2,6 +2,33 @@ exports.handler = async () => {
     return {
         statusCode: 200,
         body: JSON.stringify([
+
+
+            {
+
+        id: -5,
+        title: "Final Destination Bloodlines",
+        description: "English Movie",
+        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSRY-xDKrIC0cj-mHHeX9A6K3s3fXn4FjsycWtbRBx2Jd3HcuF",
+        videoUrl: "https://streamtape.com/e/xOMWxpMOZ6ikrK3",
+        year: 2025,
+        genre: "Horror/Mystery",
+        duration: "1H 50M",
+        isHot : true,
+        isSouth : false,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+          },
            
           {
         id: -4,
@@ -779,31 +806,7 @@ exports.handler = async () => {
         type: "movie"
 
           },
-          {
-
-        id: 28,
-        title: "Final Destination Bloodlines",
-        description: "English Movie",
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSRY-xDKrIC0cj-mHHeX9A6K3s3fXn4FjsycWtbRBx2Jd3HcuF",
-        videoUrl: "https://streamtape.com/e/xOMWxpMOZ6ikrK3",
-        year: 2025,
-        genre: "Horror/Mystery",
-        duration: "1H 50M",
-        isHot : true,
-        isSouth : false,
-        isHindi: false,
-        isDaagi: false,
-        isArrived: false,
-        isTrending: true,
-        isHorror: false,
-        isNew: false,
-        isPopular: true,
-        isAction: false,
-        isDrama: false,
-        isComedy: false,
-        type: "movie"
-
-          },
+          
         ])
     };
 };
