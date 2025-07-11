@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Add mobile-specific viewport with 0.7 initial scale (70% = zoom out 30%) -->
     <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.7, maximum-scale=1.0, user-scalable=yes">
     <title>AstrionFLix | Moon</title>
     <link rel="icon" href="assets/logo.png" type="image/png">
@@ -187,22 +186,20 @@
         /* HEADER STYLES */
         /* ============= */
         header {
-    background: transparent; /* Fully transparent */
-    padding: 1rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    transition: transform 0.3s ease, background 0.3s ease;
-    will-change: transform;
-    /* Removed: backdrop-filter, box-shadow, and border (if needed) */
-    /* Optional: Keep a very subtle border if desired */
-    border-bottom: 1px solid transparent; /* Fully invisible border */
-}
+            background: transparent;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease, background 0.3s ease;
+            will-change: transform;
+            border-bottom: 1px solid transparent;
+        }
         
         header.hide {
             transform: translateY(-100%);
@@ -785,6 +782,167 @@
         }
 
         /* ============= */
+        /* TV SERIES STYLES */
+        /* ============= */
+        .tv-series-container {
+            margin-top: 2rem;
+        }
+
+        .series-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .series-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .series-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .series-thumbnail {
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .series-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .series-card:hover .series-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .series-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        }
+
+        .series-overlay h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .series-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .series-content {
+            padding: 20px;
+        }
+
+        .season-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .season-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-primary);
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .season-btn:hover {
+            background: var(--accent-primary);
+            color: #000;
+            border-color: var(--accent-primary);
+        }
+
+        .season-btn.active {
+            background: var(--accent-primary);
+            color: #000;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px rgba(0, 198, 255, 0.5);
+        }
+
+        .episodes-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .episodes-container.active {
+            display: block;
+        }
+
+        .episode {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .episode:hover {
+            background: rgba(0, 198, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .episode-number {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .episode-info {
+            flex-grow: 1;
+        }
+
+        .episode-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .episode-duration {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .episode-play {
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        /* ============= */
         /* VIDEO MODAL */
         /* ============= */
         .video-modal {
@@ -1253,6 +1411,10 @@
             .logout-content {
                 padding: 1.5rem;
             }
+            
+            .series-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1424,7 +1586,17 @@
 
             <!-- Content Sections -->
             <main class="content-section" id="contentSection">
-                <!-- Content sections will be dynamically generated -->
+                <!-- TV Series Section -->
+                <div id="tvSeriesSection">
+                    <div class="section-header">
+                        <h3>Popular TV Series</h3>
+                    </div>
+                    <div class="tv-series-container">
+                        <div class="series-grid" id="seriesGrid">
+                            <!-- Series will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
             </main>
 
             <!-- My List Section -->
@@ -1538,6 +1710,124 @@
     </main>
 
     <script>
+        // TV Series Data (would come from JSON in real implementation)
+        const tvSeries = [
+            {
+                id: "loki",
+                title: "Loki",
+                thumbnail: "https://assets-prd.ignimgs.com/2021/11/05/loki-season2-1636141284586.jpg",
+                year: "2021-2023",
+                seasons: 2,
+                description: "The mercurial villain Loki resumes his role as the God of Mischief in a new series that takes place after the events of Avengers: Endgame.",
+                seasons: [
+                    {
+                        seasonNumber: 1,
+                        episodes: [
+                            { 
+                                id: "s1e1", 
+                                title: "Glorious Purpose", 
+                                duration: "52 min", 
+                                description: "After stealing the Tesseract, Loki finds himself at the TVA where he must help fix the timeline.",
+                                videoUrl: "https://www.youtube.com/embed/nW948Va-l10"
+                            },
+                            { 
+                                id: "s1e2", 
+                                title: "The Variant", 
+                                duration: "54 min", 
+                                description: "Mobius puts Loki to work, but not everyone at TVA is thrilled about the God of Mischief's presence.",
+                                videoUrl: "https://www.youtube.com/embed/8oZ7jX6j5S4"
+                            },
+                            { 
+                                id: "s1e3", 
+                                title: "Lamentis", 
+                                duration: "44 min", 
+                                description: "Loki finds himself stranded on a doomed planet with the TVA hunting him down.",
+                                videoUrl: "https://www.youtube.com/embed/ldMn-1iQzKE"
+                            }
+                        ]
+                    },
+                    {
+                        seasonNumber: 2,
+                        episodes: [
+                            { 
+                                id: "s2e1", 
+                                title: "Ouroboros", 
+                                duration: "48 min", 
+                                description: "Loki struggles to retain his identity as the TVA continues to crumble around him.",
+                                videoUrl: "https://www.youtube.com/embed/ldMn-1iQzKE"
+                            },
+                            { 
+                                id: "s2e2", 
+                                title: "Breaking Brad", 
+                                duration: "52 min", 
+                                description: "Loki and Mobius search for the mysterious figure behind the TVA's collapse.",
+                                videoUrl: "https://www.youtube.com/embed/ldMn-1iQzKE"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "stranger-things",
+                title: "Stranger Things",
+                thumbnail: "https://www.indiewire.com/wp-content/uploads/2022/05/stranger-things-4-vol-1-poster.jpg",
+                year: "2016-Present",
+                seasons: 4,
+                description: "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.",
+                seasons: [
+                    {
+                        seasonNumber: 1,
+                        episodes: [
+                            { 
+                                id: "st1e1", 
+                                title: "Chapter One: The Vanishing of Will Byers", 
+                                duration: "48 min", 
+                                videoUrl: "https://www.youtube.com/embed/b9EkMc79ZSU"
+                            },
+                            { 
+                                id: "st1e2", 
+                                title: "Chapter Two: The Weirdo on Maple Street", 
+                                duration: "55 min", 
+                                videoUrl: "https://www.youtube.com/embed/b9EkMc79ZSU"
+                            }
+                        ]
+                    },
+                    {
+                        seasonNumber: 2,
+                        episodes: [
+                            { 
+                                id: "st2e1", 
+                                title: "Chapter One: MADMAX", 
+                                duration: "48 min", 
+                                videoUrl: "https://www.youtube.com/embed/b9EkMc79ZSU"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "the-mandalorian",
+                title: "The Mandalorian",
+                thumbnail: "https://lumiere-a.akamaihd.net/v1/images/the-mandalorian-season-3-poster-disney-plus_05c7b5a0.jpeg",
+                year: "2019-Present",
+                seasons: 3,
+                description: "The travels of a lone bounty hunter in the outer reaches of the galaxy, far from the authority of the New Republic.",
+                seasons: [
+                    {
+                        seasonNumber: 1,
+                        episodes: [
+                            { 
+                                id: "m1e1", 
+                                title: "Chapter 1: The Mandalorian", 
+                                duration: "39 min", 
+                                videoUrl: "https://www.youtube.com/embed/aOC8E8z_ifw"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
         // ========================
         // AUTHENTICATION MANAGEMENT
         // ========================
@@ -1650,6 +1940,7 @@
         const loginError = document.getElementById('loginError');
         const backToLogin = document.getElementById('backToLogin');
         const loader = document.getElementById('loader');
+        const seriesGrid = document.getElementById('seriesGrid');
 
         // ========================
         // HELPER FUNCTIONS
@@ -1663,12 +1954,97 @@
         }
 
         // ========================
+        // TV SERIES FUNCTIONS
+        // ========================
+        function renderTVSeries() {
+            seriesGrid.innerHTML = '';
+            
+            tvSeries.forEach(series => {
+                const seriesCard = document.createElement('div');
+                seriesCard.className = 'series-card glass-effect';
+                seriesCard.innerHTML = `
+                    <div class="series-thumbnail">
+                        <img src="${series.thumbnail}" alt="${series.title}">
+                        <div class="series-overlay">
+                            <h3>${series.title}</h3>
+                            <div class="series-meta">
+                                <span>${series.year}</span>
+                                <span>${series.seasons.length} Seasons</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="series-content">
+                        <p>${series.description}</p>
+                        <div class="season-buttons">
+                            ${series.seasons.map(season => 
+                                `<button class="season-btn" data-series="${series.id}" data-season="${season.seasonNumber}">
+                                    Season ${season.seasonNumber}
+                                </button>`
+                            ).join('')}
+                        </div>
+                        ${series.seasons.map(season => `
+                            <div class="episodes-container" data-series="${series.id}" data-season="${season.seasonNumber}">
+                                ${season.episodes.map(episode => `
+                                    <div class="episode" data-video="${episode.videoUrl}">
+                                        <div class="episode-number">${season.episodes.indexOf(episode) + 1}</div>
+                                        <div class="episode-info">
+                                            <div class="episode-title">${episode.title}</div>
+                                            <div class="episode-duration">${episode.duration}</div>
+                                        </div>
+                                        <div class="episode-play">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                seriesGrid.appendChild(seriesCard);
+            });
+            
+            // Add event listeners for season buttons
+            document.querySelectorAll('.season-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const seriesId = this.dataset.series;
+                    const seasonNum = this.dataset.season;
+                    
+                    // Remove active class from all buttons in this series
+                    document.querySelectorAll(`.season-btn[data-series="${seriesId}"]`).forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Hide all episode containers for this series
+                    document.querySelectorAll(`.episodes-container[data-series="${seriesId}"]`).forEach(container => {
+                        container.classList.remove('active');
+                    });
+                    
+                    // Show selected season's episodes
+                    const episodesContainer = document.querySelector(`.episodes-container[data-series="${seriesId}"][data-season="${seasonNum}"]`);
+                    episodesContainer.classList.add('active');
+                });
+            });
+            
+            // Add event listeners for episode play
+            document.querySelectorAll('.episode').forEach(episode => {
+                episode.addEventListener('click', function() {
+                    const videoUrl = this.dataset.video;
+                    openVideoModal(videoUrl);
+                });
+            });
+        }
+
+        // ========================
         // INITIALIZATION
         // ========================
         document.addEventListener('DOMContentLoaded', async () => {
             initTheme();
             setupEventListeners();
             updateAuthUI();
+            renderTVSeries();
             
             // Only fetch videos if authenticated
             if (isAuthenticated()) {
@@ -1750,6 +2126,21 @@
                     renderCarousel(document.getElementById(section.id), filteredVideos);
                 }
             });
+            
+            // Add TV series section after carousels
+            const tvSeriesSection = document.createElement('div');
+            tvSeriesSection.id = 'tvSeriesSection';
+            tvSeriesSection.innerHTML = `
+                <div class="section-header">
+                    <h3>Popular TV Series</h3>
+                </div>
+                <div class="tv-series-container">
+                    <div class="series-grid" id="seriesGrid"></div>
+                </div>
+            `;
+            contentSection.appendChild(tvSeriesSection);
+            
+            renderTVSeries();
         }
 
         function renderCarousel(container, videos) {
