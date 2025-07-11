@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Add mobile-specific viewport with 0.7 initial scale (70% = zoom out 30%) -->
     <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.7, maximum-scale=1.0, user-scalable=yes">
     <title>AstrionFLix | Moon</title>
     <link rel="icon" href="assets/logo.png" type="image/png">
@@ -187,22 +186,19 @@
         /* HEADER STYLES */
         /* ============= */
         header {
-    background: transparent; /* Fully transparent */
-    padding: 1rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    transition: transform 0.3s ease, background 0.3s ease;
-    will-change: transform;
-    /* Removed: backdrop-filter, box-shadow, and border (if needed) */
-    /* Optional: Keep a very subtle border if desired */
-    border-bottom: 1px solid transparent; /* Fully invisible border */
-}
+            background: transparent;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease, background 0.3s ease;
+            will-change: transform;
+        }
         
         header.hide {
             transform: translateY(-100%);
@@ -617,10 +613,6 @@
             backdrop-filter: blur(5px);
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .carousel:hover .carousel-arrow {
-            opacity: 1;
         }
 
         .carousel-arrow.left {
@@ -1338,7 +1330,30 @@
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
-         
+        
+        /* ================= */
+        /* NEW STYLES FOR NAVIGATION */
+        /* ================= */
+        .section-placeholder {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            background: rgba(24, 32, 50, 0.3);
+            border: 1px dashed rgba(0, 198, 255, 0.3);
+        }
+        
+        .section-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+            opacity: 0.7;
+        }
     </style>
 </head>
 <body>
@@ -1592,7 +1607,7 @@
             document.getElementById('userProfile').style.display = isAuth ? 'flex' : 'none';
         }
 
-        // ========================
+         // ========================
         // VIDEO DATA MANAGEMENT
         // ========================
         async function fetchVideos() {
@@ -1751,6 +1766,54 @@
                 }
             });
         }
+        
+        function renderMoviesSection() {
+            contentSection.innerHTML = '';
+            
+            const filteredVideos = videos.filter(video => 
+                video.isSouth || video.isHindi || video.isDaagi || video.isAction
+            );
+            
+            const sectionElement = document.createElement('div');
+            sectionElement.className = 'carousel-section';
+            sectionElement.innerHTML = `
+                <div class="section-header">
+                    <h3>Movies Collection</h3>
+                </div>
+                <div class="carousel">
+                    <div class="carousel-container" id="moviesCarousel"></div>
+                    <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            `;
+            contentSection.appendChild(sectionElement);
+            
+            renderCarousel(document.getElementById('moviesCarousel'), filteredVideos);
+        }
+        
+        function renderTVShowsSection() {
+            contentSection.innerHTML = '';
+            
+            const filteredVideos = videos.filter(video => 
+                video.isLoki || video.isLokitwo || video.isArrived || video.isNew || video.isDrama
+            );
+            
+            const sectionElement = document.createElement('div');
+            sectionElement.className = 'carousel-section';
+            sectionElement.innerHTML = `
+                <div class="section-header">
+                    <h3>TV Shows Collection</h3>
+                </div>
+                <div class="carousel">
+                    <div class="carousel-container" id="tvCarousel"></div>
+                    <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            `;
+            contentSection.appendChild(sectionElement);
+            
+            renderCarousel(document.getElementById('tvCarousel'), filteredVideos);
+        }
 
         function renderCarousel(container, videos) {
             if (!container) return;
@@ -1863,16 +1926,9 @@
         // NAVIGATION
         // ========================
         function navigateToSection(section) {
-            if (section === 'mylist') {
-                contentSection.style.display = 'none';
-                myListSection.style.display = 'block';
-                renderMyList();
-            } else {
-                contentSection.style.display = 'block';
-                myListSection.style.display = 'none';
-                searchInput.value = '';
-                renderAllCarousels();
-            }
+            // Hide all sections first
+            myListSection.style.display = 'none';
+            contentSection.style.display = 'block';
             
             // Update active nav link
             navLinks.forEach(link => {
@@ -1882,6 +1938,19 @@
                     link.classList.remove('active');
                 }
             });
+            
+            // Render appropriate content
+            if (section === 'home') {
+                renderAllCarousels();
+            } else if (section === 'movies') {
+                renderMoviesSection();
+            } else if (section === 'tv') {
+                renderTVShowsSection();
+            } else if (section === 'mylist') {
+                contentSection.style.display = 'none';
+                myListSection.style.display = 'block';
+                renderMyList();
+            }
             
             // Scroll to top
             window.scrollTo(0, 0);
@@ -1948,9 +2017,13 @@
             // Signup button
             signupBtn.addEventListener('click', () => {
                 // For demo purposes, set as premium user
-                login('Premium', '123456');
+                login('premium', 'password');
                 updateAuthUI();
-                renderAllCarousels();
+                videos = [];
+                fetchVideos().then(data => {
+                    videos = data;
+                    renderAllCarousels();
+                });
             });
             
             // Login form submission
@@ -2023,7 +2096,7 @@
         // ========================
         // SEARCH FUNCTIONALITY
         // ========================
-       function searchVideos(query) {
+        function searchVideos(query) {
             if (!query) {
                 renderAllCarousels();
                 return;
@@ -2042,7 +2115,7 @@
             
             const filteredVideos = videos.filter(video => 
                 video.title.toLowerCase().includes(query.toLowerCase()) || 
-                video.description.toLowerCase().includes(query.toLowerCase())
+                video.genre.toLowerCase().includes(query.toLowerCase())
             );
             
             renderCarousel(document.getElementById('searchResults'), filteredVideos);
