@@ -1337,17 +1337,22 @@
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
-          @media (max-width: 767px) {
-    html, body {
-        width: 100%;
-        overflow-x: hidden;
-    }
+         @media (max-width: 767px) {
     body {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%) scale(0.7);
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* Align to top */
+        min-height: 100vh;
+        background: #fff; /* Optional: Prevent body bg issues */
+    }
+    .mobile-viewport {
+        transform: scale(0.7); /* Adjust scale as needed */
         transform-origin: top center;
-        width: 142.86%;
+        width: fit-content; /* Adjusts width to content */
+        max-width: 100vw; /* Prevents overflow */
     }
 }
 
