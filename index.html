@@ -1422,9 +1422,9 @@
                 </video>
 
                 <div class="hero-content">
-                    <h2>Now Showing: <br>LOKI Season 1 & 2</h2>
+                    <h2>Now Showing: <br>Final Destination Bloodlines</h2>
                     <p>
-                       TVA - Time Varience Authority
+                       Plagued by a violent and recurring nightmare, a college student heads home to track down the one person who might be able to break the cycle of death and save her family from the grisly demise that inevitably awaits them all.
                     </p>
                     <div class="hero-buttons">
                         <button class="btn btn-primary" id="playFeatured">
@@ -1730,18 +1730,19 @@
             
             // Create carousel sections
             const sections = [
+                { id: 'hotCarousel', title: 'Newly Added Content', filter: video => video.isHot },
+                { id: 'trendingCarousel', title: 'Trending Now', filter: video => video.isTrending },
+                { id: 'arrivedCarousel', title: 'Squid Game Season 3', filter: video => video.isArrived },
+                { id: 'newdaagiCarousel', title: 'Bangla Movies', filter: video => video.isDaagi },
+                { id: 'hindiCarousel', title: 'Hindi Movies', filter: video => video.isHindi },
                 { id: 'southCarousel', title: 'South Hindi Dubbed', filter: video => video.isSouth },
                 { id: 'lokiCarousel', title: 'Loki Season 1', filter: video => video.isLoki },
                 { id: 'lokitwoCarousel', title: 'Loki Season 2', filter: video => video.isLokitwo },
-                { id: 'trendingCarousel', title: 'Trending Now', filter: video => video.isTrending },
-                { id: 'arrivedCarousel', title: 'Squid Game Season 3', filter: video => video.isArrived },
                 { id: 'newReleasesCarousel', title: 'Panchayat Season 4', filter: video => video.isNew },
-                { id: 'newdaagiCarousel', title: 'Bangla Movies', filter: video => video.isDaagi },
-                { id: 'hindiCarousel', title: 'Hindi Movies', filter: video => video.isHindi },
                 { id: 'popularCarousel', title: 'Popular Shows', filter: video => video.isPopular },
-                { id: 'horrorCarousel', title: 'Horror 👻 (new)', filter: video => video.isHorror },
                 { id: 'actionCarousel', title: 'Action', filter: video => video.isAction },
-                { id: 'dramaCarousel', title: 'Drama', filter: video => video.isDrama },
+                // { id: 'dramaCarousel', title: 'Drama', filter: video => video.isDrama },
+                { id: 'horrorCarousel', title: 'Horror 👻 (new)', filter: video => video.isHorror },
                 { id: 'comedyCarousel', title: 'Experimental MKV Player (Only Sam Online)', filter: video => video.isComedy }
             ];
             
@@ -1995,7 +1996,7 @@
             
             // Play featured video
             playFeatured.addEventListener('click', () => {
-                openVideoModal('https://www.youtube.com/embed/lDToq9SuEmI');
+                openVideoModal('https://www.youtube.com/embed/UWMzKXsY9A4');
             });
             
             // Carousel arrows
