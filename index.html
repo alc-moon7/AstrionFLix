@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add mobile-specific viewport with 0.7 initial scale (70% = zoom out 30%) -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.7, maximum-scale=1.0, user-scalable=yes">
     <title>AstrionFLix | Moon</title>
     <link rel="icon" href="assets/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1337,37 +1338,7 @@
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
-                 @media (max-width: 767px) {
-    body {
-        overflow-x: hidden;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    
-    .mobile-viewport {
-        transform: scale(0.7);
-        transform-origin: top center;
-        width: 142.857%; /* 100% / 0.7 */
-        max-width: 100vw;
-        min-height: 100vh;
-    }
-    
-    /* Fix for fixed position elements */
-    header {
-        position: fixed;
-        width: 100vw;
-        left: 0;
-        transform: none !important;
-    }
-    
-    /* Adjust content spacing */
-    .content-section, .my-list-section {
-        padding-top: 20px;
-    }
-}
+         
     </style>
 </head>
 <body>
