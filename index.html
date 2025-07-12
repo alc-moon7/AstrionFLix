@@ -12,28 +12,28 @@
         /* GLOBAL VARIABLES */
         /* ================ */
         :root {
-            --bg-primary: #0a0e15;
-            --bg-secondary: #121a26;
+            --bg-primary: #000;
+            --bg-secondary: #121212;
             --bg-tertiary: #0d121b;
             --text-primary: #ffffff;
-            --text-secondary: #a0b1c5;
-            --accent-primary: #00c6ff;
-            --accent-secondary: #0072ff;
-            --accent-tertiary: #7928ca;
-            --accent-glow: rgba(0, 198, 255, 0.3);
+            --text-secondary: #e0e0e0;
+            --accent-primary: #e50914;
+            --accent-secondary: #b20710;
+            --accent-tertiary: #8c0b15;
+            --accent-glow: rgba(229, 9, 20, 0.3);
             --accent-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            --card-bg: rgba(24, 32, 50, 0.6);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --card-bg: rgba(30, 30, 30, 0.8);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
             --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --border-radius: 16px;
+            --border-radius: 8px;
             --player-bg: rgba(0, 0, 0, 0.95);
-            --section-spacing: 4rem;
+            --section-spacing: 3rem;
             --card-hover-scale: 1.05;
             --success-color: #00d68f;
             --error-color: #ff3d71;
-            --glass-bg: rgba(18, 26, 38, 0.7);
+            --glass-bg: rgba(20, 20, 20, 0.8);
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
@@ -60,28 +60,13 @@
         }
 
         body {
-            background: radial-gradient(ellipse at top, var(--bg-primary), #070b14);
+            background: var(--bg-primary);
             color: var(--text-primary);
             overflow-x: hidden;
             padding-top: 80px;
             line-height: 1.6;
             min-height: 100vh;
             position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(0, 114, 255, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(121, 40, 202, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 50% 50%, rgba(0, 198, 255, 0.05) 0%, transparent 30%);
-            pointer-events: none;
-            z-index: -1;
         }
 
         html {
@@ -100,11 +85,29 @@
         }
 
         .neon-text {
-            text-shadow: 0 0 8px var(--accent-primary), 0 0 16px rgba(0, 198, 255, 0.5);
+            text-shadow: 0 0 8px var(--accent-primary), 0 0 16px rgba(229, 9, 20, 0.5);
         }
 
         .pulse {
             animation: pulseGlow 3s infinite ease-in-out;
+        }
+        
+        .futuristic-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .futuristic-glow::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(229,9,20,0.2) 0%, rgba(229,9,20,0) 70%);
+            transform: rotate(30deg);
+            animation: rotateGlow 20s linear infinite;
+            z-index: -1;
         }
 
         /* ================== */
@@ -114,7 +117,7 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(10, 14, 21, 0.9);
+            background: rgba(10, 10, 10, 0.9);
             border-radius: 16px;
             padding: 15px 20px;
             z-index: 2000;
@@ -123,7 +126,7 @@
             max-width: 320px;
             backdrop-filter: blur(10px);
             border: 1px solid var(--accent-primary);
-            box-shadow: 0 5px 25px rgba(0, 198, 255, 0.3);
+            box-shadow: 0 5px 25px rgba(229, 9, 20, 0.3);
         }
         
         .popup-container.show {
@@ -213,18 +216,16 @@
         .logo img {
             height: 2.5rem;
             transition: var(--transition);
-            filter: drop-shadow(0 0 8px var(--accent-primary));
         }
 
         .logo h1 {
             font-size: 1.75rem;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+            background: linear-gradient(90deg, #fff, #e0e0e0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
             letter-spacing: -0.5px;
             font-family: 'Montserrat', sans-serif;
-            text-shadow: 0 0 15px rgba(0, 198, 255, 0.3);
         }
 
         nav ul {
@@ -241,6 +242,8 @@
             transition: var(--transition);
             position: relative;
             padding: 0.5rem 0;
+            text-transform: uppercase;
+            font-size: 0.9rem;
         }
 
         nav a::after {
@@ -262,7 +265,6 @@
         nav a:hover, 
         nav a.active {
             color: var(--text-primary);
-            text-shadow: 0 0 8px rgba(0, 198, 255, 0.3);
         }
 
         .user-actions {
@@ -374,7 +376,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(0, 198, 255, 0.2), transparent);
+            background: linear-gradient(45deg, transparent, rgba(229, 9, 20, 0.2), transparent);
             transform: translateX(-100%);
             transition: transform 0.6s ease;
         }
@@ -394,50 +396,18 @@
         /* ============== */
         .hero-banner {
             position: relative;
-            height: 100vh;
-            min-height: 600px;
+            height: 80vh;
+            min-height: 500px;
             display: flex;
-            align-items: center;
-            padding: 0 5%;
+            align-items: flex-end;
+            padding: 0 5% 5%;
             overflow: hidden;
-            background-color: rgba(0, 0, 0, 0.9);
+            background: linear-gradient(to top, #000, transparent 50%), 
+                        linear-gradient(to right, #000 10%, transparent 70%),
+                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             color: white;
             z-index: 1;
-            perspective: 1000px;
-        }
-
-        .hero-banner::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('assets/cover.jpg') center/cover no-repeat;
-            opacity: 0.05;
-            z-index: -1;
-        }
-
-        .hero-banner::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 10rem;
-            background: linear-gradient(to top, var(--bg-primary), transparent);
-            z-index: 1;
-        }
-
-        .background-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            opacity: 0.40;
+            margin-bottom: 2rem;
         }
 
         .hero-content {
@@ -445,28 +415,37 @@
             z-index: 2;
             color: #fff;
             text-align: left;
-            max-width: 42rem;
+            max-width: 50%;
             animation: fadeInUp 1.5s ease-out;
         }
 
         .hero-content h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             line-height: 1.2;
             font-weight: 800;
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(90deg, #ffffff, #c0e0ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 198, 255, 0.5);
+            color: #fff;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #e0e0e0;
+        }
+
+        .hero-meta span:not(:last-child)::after {
+            content: "•";
+            margin-left: 1rem;
         }
 
         .hero-content p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: rgba(255, 255, 255, 0.85);
             margin-bottom: 2rem;
             line-height: 1.6;
-            max-width: 80%;
         }
 
         .hero-buttons {
@@ -480,7 +459,7 @@
         /* =================== */
         .btn {
             padding: 0.75rem 1.5rem;
-            border-radius: 50px;
+            border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
             border: none;
@@ -513,25 +492,42 @@
         }
 
         .btn-primary {
-            background: var(--accent-gradient);
+            background: var(--accent-primary);
             color: white;
-            box-shadow: 0 4px 20px rgba(0, 114, 255, 0.4);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.2);
             color: white;
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 114, 255, 0.5);
+            box-shadow: 0 8px 15px rgba(229, 9, 20, 0.3);
         }
 
         .btn:active {
             transform: translateY(1px);
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .icon-btn:hover {
+            background: rgba(50, 50, 50, 0.7);
+            transform: scale(1.1);
         }
 
         /* ================= */
@@ -543,29 +539,16 @@
         }
 
         .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 1.5rem;
         }
 
         .section-header h3 {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             color: var(--text-primary);
             font-weight: 700;
             position: relative;
             display: inline-block;
-        }
-
-        .section-header h3::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 3rem;
-            height: 3px;
-            background: var(--accent-gradient);
-            border-radius: 3px;
+            margin-bottom: 1rem;
         }
 
         /* ============= */
@@ -574,7 +557,6 @@
         .carousel {
             position: relative;
             overflow: hidden;
-            margin: 0 -0.5rem;
         }
 
         .carousel-container {
@@ -583,10 +565,9 @@
             scroll-behavior: smooth;
             scrollbar-width: none;
             -ms-overflow-style: none;
-            gap: 1.5rem;
-            padding: 1rem;
+            gap: 1rem;
+            padding: 0.5rem 0;
             padding-bottom: 1.5rem;
-            margin-bottom: -1rem;
         }
 
         .carousel-container::-webkit-scrollbar {
@@ -629,12 +610,16 @@
             box-shadow: 0 0 15px var(--accent-primary);
         }
 
+        .carousel:hover .carousel-arrow {
+            opacity: 1;
+        }
+
         /* ================= */
         /* VIDEO CARD STYLES */
         /* ================= */
         .video-card {
             position: relative;
-            min-width: 240px;
+            min-width: 200px;
             background: var(--card-bg);
             border-radius: var(--border-radius);
             overflow: hidden;
@@ -645,20 +630,18 @@
             box-shadow: var(--card-shadow);
             will-change: transform;
             border: 1px solid var(--card-border);
-            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
-            transform-style: preserve-3d;
         }
 
         .video-card:hover {
-            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) scale(1.05) translateY(-0.5rem);
+            transform: scale(1.05);
             z-index: 5;
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-glow);
-            border-color: rgba(0, 198, 255, 0.3);
+            border-color: rgba(229, 9, 20, 0.3);
         }
 
         .video-thumbnail {
             height: 0;
-            padding-bottom: 56.25%;
+            padding-bottom: 150%;
             position: relative;
             overflow: hidden;
         }
@@ -677,19 +660,32 @@
             transform: scale(1.08);
         }
 
+        .card-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--accent-primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
         .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 40%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 50%);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-end;
             opacity: 0;
             transition: var(--transition);
-            padding: 0.75rem;
+            padding: 1rem;
         }
 
         .video-card:hover .video-overlay {
@@ -736,7 +732,6 @@
             align-items: center;
             justify-content: center;
             transition: var(--transition);
-            box-shadow: 0 0 10px rgba(0, 198, 255, 0.5);
         }
 
         .play-btn:hover {
@@ -745,12 +740,12 @@
         }
 
         .video-info {
-            padding: 1.25rem 1rem;
+            padding: 1rem;
         }
 
         .video-title {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
             color: var(--text-primary);
             font-weight: 600;
             transition: var(--transition);
@@ -765,15 +760,11 @@
         }
 
         .video-meta {
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
             display: flex;
             gap: 0.5rem;
             align-items: center;
-        }
-
-        .video-meta span:not(:first-child) {
-            opacity: 0.7;
         }
 
         /* ============= */
@@ -838,8 +829,8 @@
             padding-top: 56.25%;
             border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 0 60px rgba(0, 198, 255, 0.3);
-            border: 1px solid rgba(0, 198, 255, 0.2);
+            box-shadow: 0 0 60px rgba(229, 9, 20, 0.3);
+            border: 1px solid rgba(229, 9, 20, 0.2);
         }
 
         .video-container iframe {
@@ -862,9 +853,9 @@
             text-align: center;
             color: var(--text-secondary);
             padding: 3rem;
-            background: rgba(24, 32, 50, 0.5);
+            background: rgba(24, 24, 24, 0.5);
             border-radius: var(--border-radius);
-            border: 1px dashed rgba(0, 198, 255, 0.3);
+            border: 1px dashed rgba(229, 9, 20, 0.3);
         }
 
         .empty-list i {
@@ -1054,7 +1045,7 @@
 
         .login-btn:hover, .logout-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 114, 255, 0.5);
+            box-shadow: 0 8px 25px rgba(178, 7, 16, 0.5);
         }
 
         .login-btn:hover::after, .logout-btn:hover::after {
@@ -1096,41 +1087,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, #0a0e15, #070b14);
+            background: radial-gradient(ellipse at center, #0a0a0a, #000);
             z-index: 1;
             opacity: 1;
-        }
-
-        .login-bg::before, .logout-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(0, 114, 255, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(121, 40, 202, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 50% 50%, rgba(0, 198, 255, 0.05) 0%, transparent 30%);
-            pointer-events: none;
-        }
-
-        .logout-icon {
-            font-size: 4rem;
-            color: var(--accent-primary);
-            margin-bottom: 1.5rem;
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        .logout-content h2 {
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .logout-content p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.6;
         }
 
         /* ================== */
@@ -1177,11 +1136,11 @@
         /* ================== */
         @media (max-width: 1024px) {
             .hero-content h2 {
-                font-size: 3rem;
+                font-size: 2rem;
             }
             
             .section-header h3 {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
         }
 
@@ -1203,12 +1162,16 @@
                 margin: 0.5rem 0;
             }
             
+            .hero-content {
+                max-width: 100%;
+            }
+            
             .hero-content h2 {
-                font-size: 2.25rem;
+                font-size: 1.8rem;
             }
             
             .hero-content p {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 max-width: 100%;
             }
             
@@ -1219,6 +1182,7 @@
             
             .btn {
                 padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
             }
             
             .modal-content {
@@ -1226,7 +1190,7 @@
             }
             
             .video-card {
-                min-width: 200px;
+                min-width: 160px;
             }
             
             .search-box input {
@@ -1249,7 +1213,7 @@
 
         @media (max-width: 576px) {
             .hero-content h2 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             
             .hero-buttons {
@@ -1263,7 +1227,7 @@
             }
             
             .video-card {
-                min-width: 160px;
+                min-width: 140px;
             }
             
             .section-header {
@@ -1290,18 +1254,14 @@
         /* ANIMATIONS */
         /* ================= */
         @keyframes pulseGlow {
-            0% { box-shadow: 0 0 10px rgba(0, 198, 255, 0.5); transform: scale(1); }
-            50% { box-shadow: 0 0 20px rgba(0, 198, 255, 0.8); transform: scale(1.05); }
-            100% { box-shadow: 0 0 10px rgba(0, 198, 255, 0.5); transform: scale(1); }
+            0% { box-shadow: 0 0 10px rgba(229, 9, 20, 0.5); transform: scale(1); }
+            50% { box-shadow: 0 0 20px rgba(229, 9, 20, 0.8); transform: scale(1.05); }
+            100% { box-shadow: 0 0 10px rgba(229, 9, 20, 0.5); transform: scale(1); }
         }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(2rem); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes skeletonShimmer {
-            100% { left: 100%; }
         }
 
         @keyframes scaleIn {
@@ -1313,46 +1273,15 @@
             from { opacity: 0; transform: translateY(1rem); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
         
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
         
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        /* ================= */
-        /* NEW STYLES FOR NAVIGATION */
-        /* ================= */
-        .section-placeholder {
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            background: rgba(24, 32, 50, 0.3);
-            border: 1px dashed rgba(0, 198, 255, 0.3);
-        }
-        
-        .section-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--accent-primary);
-            opacity: 0.7;
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -1384,15 +1313,18 @@
                     <div class="avatar pulse">
                         <img src="assets/logo.png" alt="AstrionFLix Logo">
                     </div>
-                    <h1>AstrionFLix <span class="moon-beta">(Beta)</span></h1>
+                    <h1>AstrionFLix</h1>
                 </div>
 
                 <nav>
                     <ul>
-                        <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                        <li><a href="#" class="nav-link active" data-section="home">Originals</a></li>
                         <li><a href="#" class="nav-link" data-section="movies">Movies</a></li>
-                        <li><a href="#" class="nav-link" data-section="tv">TV Shows</a></li>
-                        <li><a href="#" class="nav-link" data-section="mylist">My List</a></li>
+                        <li><a href="#" class="nav-link" data-section="tv">Series</a></li>
+                        <li><a href="#" class="nav-link" data-section="mylist">Eid Films</a></li>
+                        <li><a href="#" class="nav-link" data-section="mylist">Bytes</a></li>
+                        <li><a href="#" class="nav-link" data-section="mylist">Shortfilms</a></li>
+                        <li><a href="#" class="nav-link" data-section="mylist">Songs</a></li>
                     </ul>
                 </nav>
                 <div class="user-actions">
@@ -1416,22 +1348,26 @@
 
             <!-- Hero Banner -->
             <section class="hero-banner" id="homeSection">
-                <video autoplay muted loop playsinline class="background-video">
-                    <source src="assets/videoplayback.mp4" type="video/webm">
-                    Your browser does not support the video tag.
-                </video>
-
                 <div class="hero-content">
-                    <h2>Now Showing: <br>Final Destination Bloodlines</h2>
+                    <h2>Final Destination Bloodlines</h2>
+                    <div class="hero-meta">
+                        <span>Horror</span>
+                        <span>18+</span>
+                        <span>2024</span>
+                        <span>2h 15m</span>
+                    </div>
                     <p>
                        Plagued by a violent and recurring nightmare, a college student heads home to track down the one person who might be able to break the cycle of death and save her family from the grisly demise that inevitably awaits them all.
                     </p>
                     <div class="hero-buttons">
                         <button class="btn btn-primary" id="playFeatured">
-                            <i class="fas fa-play"></i> Watch Trailer
+                            <i class="fas fa-play"></i> Play
                         </button>
-                        <button class="btn btn-secondary">
-                            <i class="fas fa-info-circle"></i> NB: Please use Brave Browser or Pop up blocker.
+                        <button class="icon-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="icon-btn">
+                            <i class="fas fa-info"></i>
                         </button>
                     </div>
                 </div>
@@ -1554,88 +1490,11 @@
 
     <script>
         // ========================
-        // AUTHENTICATION MANAGEMENT
-        // ========================
-        // Check if user is authenticated
-        function isAuthenticated() {
-            return localStorage.getItem('isAuthenticated') === 'true';
-        }
-
-        // Login function
-        async function login(username, password) {
-            try {
-                const response = await fetch('/.netlify/functions/auth', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username, password })
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    localStorage.setItem('isAuthenticated', 'true');
-                    localStorage.setItem('currentUser', username);
-                    return true;
-                }
-                return false;
-            } catch (error) {
-                console.error('Login error:', error);
-                return false;
-            }
-        }
-
-        // Logout function
-        function logout() {
-            localStorage.removeItem('isAuthenticated');
-            localStorage.removeItem('currentUser');
-        }
-
-        // Update UI based on authentication status
-        function updateAuthUI() {
-            const isAuth = isAuthenticated();
-            const currentUser = localStorage.getItem('currentUser') || 'Guest';
-            
-            document.getElementById('homePage').style.display = isAuth ? 'block' : 'none';
-            document.getElementById('loginPage').style.display = isAuth ? 'none' : 'block';
-            document.getElementById('logoutPage').style.display = 'none';
-            
-            document.getElementById('userStatus').textContent = isAuth ? currentUser : 'Guest';
-            document.getElementById('userAvatar').textContent = isAuth ? currentUser.charAt(0).toUpperCase() : 'G';
-            document.getElementById('authButtons').style.display = isAuth ? 'none' : 'flex';
-            document.getElementById('userProfile').style.display = isAuth ? 'flex' : 'none';
-        }
-
-         // ========================
-        // VIDEO DATA MANAGEMENT
-        // ========================
-        async function fetchVideos() {
-            try {
-                showLoader();
-                const response = await fetch('/.netlify/functions/videos');
-                const videos = await response.json();
-                hideLoader();
-                return videos;
-            } catch (error) {
-                console.error('Error fetching videos:', error);
-                hideLoader();
-                return [];
-            }
-        }
-
-        // ========================
         // STATE MANAGEMENT
         // ========================
         let myList = JSON.parse(localStorage.getItem('myList')) || [];
         let currentTheme = localStorage.getItem('theme') || 'dark';
         let currentUser = localStorage.getItem('currentUser') || null;
-        let currentFilters = {
-            genre: 'all',
-            year: 'all',
-            type: 'all',
-            sort: 'default'
-        };
         let videos = [];
 
         // ========================
@@ -1675,6 +1534,10 @@
         
         function hideLoader() {
             loader.style.display = 'none';
+        }
+        
+        function isAuthenticated() {
+            return localStorage.getItem('isAuthenticated') === 'true';
         }
 
         // ========================
@@ -1723,6 +1586,24 @@
         }
 
         // ========================
+        // VIDEO DATA MANAGEMENT
+        // ========================
+         async function fetchVideos() {
+            try {
+                showLoader();
+                const response = await fetch('/.netlify/functions/videos');
+                const videos = await response.json();
+                hideLoader();
+                return videos;
+            } catch (error) {
+                console.error('Error fetching videos:', error);
+                hideLoader();
+                return [];
+            }
+        }
+
+
+        // ========================
         // RENDERING FUNCTIONS
         // ========================
         function renderAllCarousels() {
@@ -1732,26 +1613,19 @@
             const sections = [
                 { id: 'hotCarousel', title: 'Newly Added Content', filter: video => video.isHot },
                 { id: 'trendingCarousel', title: 'Trending Now', filter: video => video.isTrending },
-                { id: 'arrivedCarousel', title: 'Squid Game Season 3', filter: video => video.isArrived },
-                { id: 'newdaagiCarousel', title: 'Bangla Movies', filter: video => video.isDaagi },
-                { id: 'hindiCarousel', title: 'Hindi Movies', filter: video => video.isHindi },
-                { id: 'southCarousel', title: 'South Hindi Dubbed', filter: video => video.isSouth },
-                { id: 'lokiCarousel', title: 'Loki Season 1', filter: video => video.isLoki },
-                { id: 'lokitwoCarousel', title: 'Loki Season 2', filter: video => video.isLokitwo },
-                { id: 'newReleasesCarousel', title: 'Panchayat Season 4', filter: video => video.isNew },
+                { id: 'newReleasesCarousel', title: 'New Releases', filter: video => video.isNew },
                 { id: 'popularCarousel', title: 'Popular Shows', filter: video => video.isPopular },
                 { id: 'actionCarousel', title: 'Action', filter: video => video.isAction },
-                // { id: 'dramaCarousel', title: 'Drama', filter: video => video.isDrama },
-                { id: 'horrorCarousel', title: 'Horror 👻 (new)', filter: video => video.isHorror },
-                { id: 'comedyCarousel', title: 'Experimental MKV Player (Only Sam Online)', filter: video => video.isComedy }
+                { id: 'horrorCarousel', title: 'Horror 👻', filter: video => video.isHorror },
+                { id: 'comedyCarousel', title: 'Comedy', filter: video => video.isComedy }
             ];
             
             sections.forEach(section => {
                 const filteredVideos = videos.filter(section.filter);
-                if (filteredVideos.length > 0) {
-                    const sectionElement = document.createElement('div');
-                    sectionElement.className = 'carousel-section';
-                    sectionElement.innerHTML = `
+                if (filteredVideos.length === 0) return;
+                
+                const sectionHTML = `
+                    <div class="section">
                         <div class="section-header">
                             <h3>${section.title}</h3>
                         </div>
@@ -1760,60 +1634,14 @@
                             <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
                             <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
                         </div>
-                    `;
-                    contentSection.appendChild(sectionElement);
-                    
-                    renderCarousel(document.getElementById(section.id), filteredVideos);
-                }
+                    </div>
+                `;
+                
+                contentSection.insertAdjacentHTML('beforeend', sectionHTML);
+                
+                // Render carousel items
+                renderCarousel(document.getElementById(section.id), filteredVideos);
             });
-        }
-        
-        function renderMoviesSection() {
-            contentSection.innerHTML = '';
-            
-            const filteredVideos = videos.filter(video => 
-                video.isSouth || video.isHindi || video.isDaagi || video.isAction
-            );
-            
-            const sectionElement = document.createElement('div');
-            sectionElement.className = 'carousel-section';
-            sectionElement.innerHTML = `
-                <div class="section-header">
-                    <h3>Movies Collection</h3>
-                </div>
-                <div class="carousel">
-                    <div class="carousel-container" id="moviesCarousel"></div>
-                    <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            `;
-            contentSection.appendChild(sectionElement);
-            
-            renderCarousel(document.getElementById('moviesCarousel'), filteredVideos);
-        }
-        
-        function renderTVShowsSection() {
-            contentSection.innerHTML = '';
-            
-            const filteredVideos = videos.filter(video => 
-                video.isLoki || video.isLokitwo || video.isArrived || video.isNew || video.isDrama
-            );
-            
-            const sectionElement = document.createElement('div');
-            sectionElement.className = 'carousel-section';
-            sectionElement.innerHTML = `
-                <div class="section-header">
-                    <h3>TV Shows Collection</h3>
-                </div>
-                <div class="carousel">
-                    <div class="carousel-container" id="tvCarousel"></div>
-                    <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            `;
-            contentSection.appendChild(sectionElement);
-            
-            renderCarousel(document.getElementById('tvCarousel'), filteredVideos);
         }
 
         function renderCarousel(container, videos) {
@@ -1826,14 +1654,16 @@
                 return;
             }
             
-            videos.forEach(video => {
+            videos.forEach((video, index) => {
                 const isInMyList = myList.includes(video.id);
+                const tag = index < 3 ? (index === 0 ? "New Release" : "Hot") : "Trending";
                 
                 const videoCard = document.createElement('div');
                 videoCard.className = 'video-card';
                 videoCard.innerHTML = `
                     <div class="video-thumbnail">
                         <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+                        <div class="card-tag">${tag}</div>
                         <div class="video-overlay">
                             <div class="video-overlay-top">
                                 <button class="add-to-list" data-id="${video.id}" aria-label="${isInMyList ? 'Remove from' : 'Add to'} my list">
@@ -1862,7 +1692,7 @@
                 const playBtn = videoCard.querySelector('.play-btn');
                 playBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    openVideoModal(video.videoUrl);
+                    openVideoModal('https://www.youtube.com/embed/UWMzKXsY9A4');
                 });
                 
                 const addToListBtn = videoCard.querySelector('.add-to-list');
@@ -1874,7 +1704,7 @@
                 });
                 
                 videoCard.addEventListener('click', () => {
-                    openVideoModal(video.videoUrl);
+                    openVideoModal('https://www.youtube.com/embed/UWMzKXsY9A4');
                 });
                 
                 container.appendChild(videoCard);
@@ -1944,9 +1774,9 @@
             if (section === 'home') {
                 renderAllCarousels();
             } else if (section === 'movies') {
-                renderMoviesSection();
+                // Render movies section
             } else if (section === 'tv') {
-                renderTVShowsSection();
+                // Render TV shows section
             } else if (section === 'mylist') {
                 contentSection.style.display = 'none';
                 myListSection.style.display = 'block';
@@ -1962,6 +1792,35 @@
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('loginPage').style.display = 'none';
             document.getElementById('logoutPage').style.display = 'block';
+        }
+        
+        // Update UI based on authentication status
+        function updateAuthUI() {
+            const isAuth = isAuthenticated();
+            const currentUser = localStorage.getItem('currentUser') || 'Guest';
+            
+            document.getElementById('homePage').style.display = isAuth ? 'block' : 'none';
+            document.getElementById('loginPage').style.display = isAuth ? 'none' : 'block';
+            document.getElementById('logoutPage').style.display = 'none';
+            
+            document.getElementById('userStatus').textContent = isAuth ? currentUser : 'Guest';
+            document.getElementById('userAvatar').textContent = isAuth ? currentUser.charAt(0).toUpperCase() : 'G';
+            document.getElementById('authButtons').style.display = isAuth ? 'none' : 'flex';
+            document.getElementById('userProfile').style.display = isAuth ? 'flex' : 'none';
+        }
+        
+        // Login function
+        function login(username, password) {
+            // For demo purposes, simulate login
+            localStorage.setItem('isAuthenticated', 'true');
+            localStorage.setItem('currentUser', username);
+            return true;
+        }
+        
+        // Logout function
+        function logout() {
+            localStorage.removeItem('isAuthenticated');
+            localStorage.removeItem('currentUser');
         }
 
         // ========================
@@ -2020,7 +1879,6 @@
                 // For demo purposes, set as premium user
                 login('premium', 'password');
                 updateAuthUI();
-                videos = [];
                 fetchVideos().then(data => {
                     videos = data;
                     renderAllCarousels();
@@ -2039,7 +1897,7 @@
                     return;
                 }
                 
-                if (await login(username, password)) {
+                if (login(username, password)) {
                     // Fetch videos after successful login
                     videos = await fetchVideos();
                     renderAllCarousels();
@@ -2088,7 +1946,7 @@
                 
                 scrollTimeout = setTimeout(() => {
                     header.classList.remove('hide');
-                }, 5000);
+                }, 10000);
                 
                 lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
             });
