@@ -1,2 +1,0 @@
-# ott
-ott platform
