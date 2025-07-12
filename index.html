@@ -30,7 +30,13 @@
             --border-radius: 8px;
             --player-bg: rgba(0, 0, 0, 0.95);
             --section-spacing: 3rem;
-            --card-hover-scale: 1.05;
+            --card-bg: #1a1a1a;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-primary: #e50914;
+            --accent-glow: rgba(229, 9, 20, 0.4);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             --success-color: #00d68f;
             --error-color: #ff3d71;
             --glass-bg: rgba(20, 20, 20, 0.8);
@@ -396,18 +402,50 @@
         /* ============== */
         .hero-banner {
             position: relative;
-            height: 80vh;
-            min-height: 500px;
+            height: 100vh;
+            min-height: 600px;
             display: flex;
-            align-items: flex-end;
-            padding: 0 5% 5%;
+            align-items: center;
+            padding: 0 5%;
             overflow: hidden;
-            background: linear-gradient(to top, #000, transparent 50%), 
-                        linear-gradient(to right, #000 10%, transparent 70%),
-                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background-color: rgba(0, 0, 0, 0.9);
             color: white;
             z-index: 1;
-            margin-bottom: 2rem;
+            perspective: 1000px;
+        }
+
+        .hero-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/cover.jpg') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10rem;
+            background: linear-gradient(to top, var(--bg-primary), transparent);
+            z-index: 1;
+        }
+
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.40;
         }
 
         .hero-content {
@@ -1348,6 +1386,10 @@
 
             <!-- Hero Banner -->
             <section class="hero-banner" id="homeSection">
+                 <video autoplay muted loop playsinline class="background-video">
+                    <source src="assets/videoplayback.mp4" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
                 <div class="hero-content">
                     <h2>Final Destination Bloodlines</h2>
                     <div class="hero-meta">
