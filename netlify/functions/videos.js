@@ -4,9 +4,36 @@ exports.handler = async () => {
         body: JSON.stringify([
 
 
+             {
+
+        id: 26,
+        title: "Mission: Impossible : The Final Reckoning",
+        description: "English Movie",
+        thumbnail: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcShcMw2wUx24KAWkT-eQaC8bCB5EzkApaInrKpXeGm_UM8HcBlN",
+        videoUrl: "https://streamtape.com/e/0eeMR4rmKeSbPzl",
+        year: 2025,
+        genre: "Horror/Mystery",
+        duration: "1H 50M",
+        isHot : true,
+        isSouth : false,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: true,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "movie"
+
+          },
+
+
             {
 
-        id: -5,
+        id: 25,
         title: "Final Destination Bloodlines",
         description: "English Movie",
         thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSRY-xDKrIC0cj-mHHeX9A6K3s3fXn4FjsycWtbRBx2Jd3HcuF",
@@ -488,7 +515,7 @@ exports.handler = async () => {
         id: 13,
         title: "S3 E1 Keys and Knives",
         description: "Korean series",
-        thumbnail: "assets/1.jpg",
+        thumbnail: "https://i.ytimg.com/vi/11Jh0_82fgw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCPyKRkX-phXKp6-nXER9DA9CNixA",
         videoUrl: "https://streamtape.com/e/4v9pl8xaK6FK6OZ/Squid_Game_S03E01_1080p_NF_WEB-DL_x265_HEVC_MSubs_%5BMulti_Audio%5D%5BHindi_5.1%2BEnglish_5.1%2BKorean_5.1%5D_-KmHD.mp4",
         year: 2025,
         genre: "Action/Thriller",
