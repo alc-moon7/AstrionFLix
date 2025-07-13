@@ -653,156 +653,161 @@
         }
 
         /* ================= */
-        /* VIDEO CARD STYLES */
+        /* VIDEO CARD STYLES - UPDATED FOR OTT EFFECT */
         /* ================= */
         .video-card {
             position: relative;
-            min-width: 200px;
-            background: var(--card-bg);
+            width: 200px;
+            height: 300px;
             border-radius: var(--border-radius);
             overflow: hidden;
-            transition: var(--transition);
+            box-shadow: var(--card-shadow);
             cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-origin: center;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             flex-shrink: 0;
             transform-origin: center bottom;
-            box-shadow: var(--card-shadow);
             will-change: transform;
-            border: 1px solid var(--card-border);
         }
-
+        
         .video-card:hover {
             transform: scale(1.05);
             z-index: 5;
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-glow);
             border-color: rgba(229, 9, 20, 0.3);
         }
-
+        
         .video-thumbnail {
-            height: 0;
-            padding-bottom: 150%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-thumbnail img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease;
         }
-
-        .video-card:hover .video-thumbnail img {
+        
+        .video-card:hover .video-thumbnail {
             transform: scale(1.08);
         }
-
-        .card-tag {
+        
+        .card-badge {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 12px;
+            left: 12px;
             background: var(--accent-primary);
             color: white;
-            padding: 4px 8px;
+            padding: 6px 12px;
             border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             z-index: 2;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-
+        
         .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 50%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 50%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             opacity: 0;
-            transition: var(--transition);
-            padding: 1rem;
+            transition: opacity 0.3s ease;
+            padding: 1.2rem;
+            color: white;
+            z-index: 1;
         }
-
+        
         .video-card:hover .video-overlay {
             opacity: 1;
         }
-
-        .video-overlay-top {
+        
+        .overlay-content {
+            transform: translateY(10px);
+            transition: transform 0.3s ease;
+            opacity: 0;
+        }
+        
+        .video-card:hover .overlay-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .card-title {
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+        }
+        
+        .card-meta {
             display: flex;
-            justify-content: flex-end;
+            gap: 0.8rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: #e0e0e0;
+            flex-wrap: wrap;
         }
-
-        .add-to-list {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 50%;
-            width: 2rem;
-            height: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            backdrop-filter: blur(2px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        
+        .card-meta span:not(:last-child)::after {
+            content: "•";
+            margin-left: 0.8rem;
         }
-
-        .add-to-list:hover {
-            background: var(--accent-primary);
-            transform: scale(1.1);
-            box-shadow: 0 0 10px var(--accent-primary);
-        }
-
-        .video-overlay-bottom {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .play-btn {
-            background: var(--accent-primary);
-            border-radius: 50%;
-            width: 2.5rem;
-            height: 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .play-btn:hover {
-            transform: scale(1.1);
-            background: var(--accent-secondary);
-        }
-
-        .video-info {
-            padding: 1rem;
-        }
-
-        .video-title {
-            font-size: 0.95rem;
-            margin-bottom: 0.25rem;
-            color: var(--text-primary);
-            font-weight: 600;
-            transition: var(--transition);
+        
+        .card-description {
+            font-size: 0.75rem;
+            line-height: 1.4;
+            color: #ccc;
             display: -webkit-box;
-            -webkit-line-clamp: 1;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            margin-bottom: 1rem;
         }
-
-        .video-card:hover .video-title {
-            color: var(--accent-primary);
-        }
-
-        .video-meta {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+        
+        .card-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .action-btn.play {
+            background: var(--accent-primary);
+        }
+        
+        .action-btn.play:hover {
+            background: #f40612;
         }
 
         /* ============= */
@@ -1655,19 +1660,26 @@
             const sections = [
                 { id: 'hotCarousel', title: 'Newly Added Content', filter: video => video.isHot },
                 { id: 'trendingCarousel', title: 'Trending Now', filter: video => video.isTrending },
-                { id: 'newReleasesCarousel', title: 'New Releases', filter: video => video.isNew },
+                { id: 'arrivedCarousel', title: 'Squid Game Season 3', filter: video => video.isArrived },
+                { id: 'newdaagiCarousel', title: 'Bangla Movies', filter: video => video.isDaagi },
+                { id: 'hindiCarousel', title: 'Hindi Movies', filter: video => video.isHindi },
+                { id: 'southCarousel', title: 'South Hindi Dubbed', filter: video => video.isSouth },
+                { id: 'lokiCarousel', title: 'Loki Season 1', filter: video => video.isLoki },
+                { id: 'lokitwoCarousel', title: 'Loki Season 2', filter: video => video.isLokitwo },
+                { id: 'newReleasesCarousel', title: 'Panchayat Season 4', filter: video => video.isNew },
                 { id: 'popularCarousel', title: 'Popular Shows', filter: video => video.isPopular },
                 { id: 'actionCarousel', title: 'Action', filter: video => video.isAction },
-                { id: 'horrorCarousel', title: 'Horror 👻', filter: video => video.isHorror },
-                { id: 'comedyCarousel', title: 'Comedy', filter: video => video.isComedy }
+                // { id: 'dramaCarousel', title: 'Drama', filter: video => video.isDrama },
+                { id: 'horrorCarousel', title: 'Horror 👻 (new)', filter: video => video.isHorror },
+                { id: 'comedyCarousel', title: 'Experimental MKV Player (Only Sam Online)', filter: video => video.isComedy }
             ];
             
             sections.forEach(section => {
                 const filteredVideos = videos.filter(section.filter);
-                if (filteredVideos.length === 0) return;
-                
-                const sectionHTML = `
-                    <div class="section">
+                if (filteredVideos.length > 0) {
+                    const sectionElement = document.createElement('div');
+                    sectionElement.className = 'carousel-section';
+                    sectionElement.innerHTML = `
                         <div class="section-header">
                             <h3>${section.title}</h3>
                         </div>
@@ -1676,14 +1688,60 @@
                             <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
                             <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
                         </div>
-                    </div>
-                `;
-                
-                contentSection.insertAdjacentHTML('beforeend', sectionHTML);
-                
-                // Render carousel items
-                renderCarousel(document.getElementById(section.id), filteredVideos);
+                    `;
+                    contentSection.appendChild(sectionElement);
+                    
+                    renderCarousel(document.getElementById(section.id), filteredVideos);
+                }
             });
+        }
+        
+        function renderMoviesSection() {
+            contentSection.innerHTML = '';
+            
+            const filteredVideos = videos.filter(video => 
+                video.isSouth || video.isHindi || video.isDaagi || video.isAction
+            );
+            
+            const sectionElement = document.createElement('div');
+            sectionElement.className = 'carousel-section';
+            sectionElement.innerHTML = `
+                <div class="section-header">
+                    <h3>Movies Collection</h3>
+                </div>
+                <div class="carousel">
+                    <div class="carousel-container" id="moviesCarousel"></div>
+                    <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            `;
+            contentSection.appendChild(sectionElement);
+            
+            renderCarousel(document.getElementById('moviesCarousel'), filteredVideos);
+        }
+        
+        function renderTVShowsSection() {
+            contentSection.innerHTML = '';
+            
+            const filteredVideos = videos.filter(video => 
+                video.isLoki || video.isLokitwo || video.isArrived || video.isNew || video.isDrama
+            );
+            
+            const sectionElement = document.createElement('div');
+            sectionElement.className = 'carousel-section';
+            sectionElement.innerHTML = `
+                <div class="section-header">
+                    <h3>TV Shows Collection</h3>
+                </div>
+                <div class="carousel">
+                    <div class="carousel-container" id="tvCarousel"></div>
+                    <button class="carousel-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            `;
+            contentSection.appendChild(sectionElement);
+            
+            renderCarousel(document.getElementById('tvCarousel'), filteredVideos);
         }
 
         function renderCarousel(container, videos) {
@@ -1696,45 +1754,54 @@
                 return;
             }
             
-            videos.forEach((video, index) => {
+            videos.forEach(video => {
                 const isInMyList = myList.includes(video.id);
-                const tag = index < 3 ? (index === 0 ? "New Release" : "Hot") : "Trending";
                 
                 const videoCard = document.createElement('div');
                 videoCard.className = 'video-card';
                 videoCard.innerHTML = `
-                    <div class="video-thumbnail">
-                        <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
-                        <div class="card-tag">${tag}</div>
-                        <div class="video-overlay">
-                            <div class="video-overlay-top">
-                                <button class="add-to-list" data-id="${video.id}" aria-label="${isInMyList ? 'Remove from' : 'Add to'} my list">
-                                    <i class="fas fa-${isInMyList ? 'minus' : 'plus'}"></i>
-                                </button>
-                            </div>
-                            <div class="video-overlay-bottom">
-                                <button class="play-btn" aria-label="Play ${video.title}">
-                                    <i class="fas fa-play"></i>
-                                </button>
+                    <div class="video-thumbnail" style="background-image: url('${video.thumbnail}')">
+                        <div class="card-badge">${video.isHot ? 'Hot' : video.isNew ? 'New' : 'Popular'}</div>
+                    </div>
+                    <div class="video-overlay">
+                        <div class="overlay-content">
+                            <h3 class="card-title">${video.title}</h3>
+                            <div class="card-meta">
+                                <span>${video.year}</span>
+                                <span>${video.genre}</span>
                                 <span>${video.duration}</span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h4 class="video-title">${video.title}</h4>
-                        <div class="video-meta">
-                            <span>${video.year}</span>
-                            <span>•</span>
-                            <span>${video.genre}</span>
+                            <div class="card-actions">
+                                <button class="action-btn play play-btn" data-id="${video.id}">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="action-btn add-to-list" data-id="${video.id}">
+                                    <i class="fas fa-${isInMyList ? 'minus' : 'plus'}"></i>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-info"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
                 
                 // Add event listeners
                 const playBtn = videoCard.querySelector('.play-btn');
+                playBtn.addEventListener('mouseenter', () => {
+                    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    setTimeout(() => {
+                        playBtn.innerHTML = 'Play';
+                    }, 200);
+                });
+                
+                playBtn.addEventListener('mouseleave', () => {
+                    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                });
+                
                 playBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    openVideoModal('https://www.youtube.com/embed/UWMzKXsY9A4');
+                    openVideoModal(video.videoUrl);
                 });
                 
                 const addToListBtn = videoCard.querySelector('.add-to-list');
@@ -1746,7 +1813,7 @@
                 });
                 
                 videoCard.addEventListener('click', () => {
-                    openVideoModal('https://www.youtube.com/embed/UWMzKXsY9A4');
+                    openVideoModal(video.videoUrl);
                 });
                 
                 container.appendChild(videoCard);
