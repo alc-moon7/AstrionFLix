@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Sraboni</title>
+    <link rel="icon" href="assets/logo.png" type="image/png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;600&family=Montserrat:wght@300;500&display=swap');
+
+    :root {
+      --primary-color: #c9184a;
+      --secondary-color: #6a1b4d;
+      --text-color: #4a2c2a;
+      --bg-color: #fff0f5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg-color);
+      overflow-x: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      perspective: 1000px;
+    }
+
+    /* Jungle Background */
+    .jungle-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .tree {
+      position: absolute;
+      bottom: 0;
+      width: 150px;
+      height: 300px;
+      background: linear-gradient(to right, #0a3d1d, #1e8449);
+      clip-path: polygon(0% 100%, 20% 40%, 30% 60%, 40% 30%, 50% 50%, 60% 20%, 70% 40%, 80% 10%, 90% 30%, 100% 0%, 100% 100%);
+      animation: sway 8s infinite alternate ease-in-out;
+    }
+
+    .tree:nth-child(1) {
+      left: -30px;
+      height: 400px;
+      transform: scaleX(-1);
+      animation-delay: 0.5s;
+    }
+
+    .tree:nth-child(2) {
+      right: -30px;
+      height: 350px;
+    }
+
+    .tree:nth-child(3) {
+      left: 20%;
+      height: 250px;
+      animation-delay: 1s;
+    }
+
+    .tree:nth-child(4) {
+      right: 25%;
+      height: 300px;
+      animation-delay: 1.5s;
+    }
+
+    /* Waterfall Animation */
+    .waterfall {
+      position: absolute;
+      right: 15%;
+      top: -50px;
+      width: 80px;
+      height: 300px;
+      background: linear-gradient(to bottom, rgba(173, 216, 230, 0.8), rgba(135, 206, 250, 0.5));
+      clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+      animation: flow 3s linear infinite;
+      z-index: -1;
+    }
+
+    .waterfall::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background: rgba(135, 206, 250, 0.3);
+      border-radius: 50%;
+      filter: blur(5px);
+    }
+
+    /* Letter Container */
+    .letter-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(201, 24, 74, 0.2);
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease;
+      z-index: 1;
+    }
+
+    .letter-container::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, #ff69b4, #ffb6c1, #ff69b4);
+      z-index: -1;
+      border-radius: 30px;
+      opacity: 0.3;
+      animation: gradientBG 15s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(28px, 5vw, 42px);
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      font-size: clamp(16px, 3vw, 18px);
+      color: var(--text-color);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      text-align: left;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    p::before {
+      content: '❀';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--primary-color);
+      font-size: 12px;
+    }
+
+    .footer {
+      font-style: italic;
+      font-size: clamp(15px, 3vw, 16px);
+      color: var(--secondary-color);
+      margin-top: 30px;
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+    }
+
+    /* Floating elements */
+    .floating-elements {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart, .leaf, .flower {
+      position: absolute;
+      font-size: 24px;
+      animation: float 10s linear infinite;
+      opacity: 0;
+    }
+
+    .heart { color: #ff69b4; }
+    .leaf { color: #2e8b57; transform: rotate(45deg); }
+    .flower { color: #ffb6c1; }
+
+    /* Paper fold effect */
+    .fold {
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      transform: rotate(1deg);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .fold.top {
+      top: -10px;
+      left: 0;
+    }
+
+    .fold.bottom {
+      bottom: -10px;
+      right: 0;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px) rotateX(20deg); }
+      to { opacity: 1; transform: translateY(0) rotateX(0); }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-100px) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes sway {
+      0% { transform: skewX(0deg); }
+      100% { transform: skewX(5deg); }
+    }
+
+    @keyframes flow {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 100%; }
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .letter-container {
+        padding: 25px 20px;
+        width: 95%;
+      }
+
+      .waterfall {
+        right: 5%;
+        width: 50px;
+        height: 200px;
+      }
+
+      .tree:nth-child(3), .tree:nth-child(4) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      .letter-container {
+        padding: 20px 15px;
+      }
+
+      .waterfall {
+        display: none;
+      }
+
+      p {
+        padding-left: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Jungle Background -->
+  <div class="jungle-bg">
+    <div class="tree"></div>
+    <div class="tree"></div>
+    <div class="tree"></div>
+    <div class="tree"></div>
+    <div class="waterfall"></div>
+  </div>
+
+  <!-- Floating Elements -->
+  <div class="floating-elements" id="floatingElements"></div>
+
+  <!-- Letter Container -->
+  <div class="letter-container">
+    <div class="fold top"></div>
+    <h1>🌿 To  My  Picci  Bacca,</h1>
+    <p>
+      As you embark on your journey to the serene hills of Bandarban, my heart is already missing you. But more than anything, I'm happy knowing you'll be surrounded by nature's breathtaking beauty — because someone as beautiful as you belongs among the clouds and mountains. 🌄
+    </p>
+    <p>
+      Breathe in the fresh air, dance with the wind, and let the soft whispers of the hills remind you of me. I hope each sunrise makes you smile, and every night under the stars makes you feel loved — because no matter how far you go, my love will always find you.
+    </p>
+    <p>
+      Take care of your lovely self, my mountain queen. my Dearest Sraboni❤️. 💫 And remember, I'll be counting the days until I can hold you close again. 🌙💛
+    </p>
+    <div class="footer">
+      With all my love,<br>
+      — Honuman🦧
+    </div>
+    <div class="fold bottom"></div>
+  </div>
+
+  <script>
+    // Create floating elements
+    const floatingElements = document.getElementById('floatingElements');
+    const elements = ['💗', '💖', '💘', '💝', '❤️', '🌿', '🍃', '🌸', '🌺'];
+    
+    for (let i = 0; i < 20; i++) {
+      const element = document.createElement('div');
+      const randomElement = elements[Math.floor(Math.random() * elements.length)];
+      element.innerHTML = randomElement;
+      
+      // Assign class based on content
+      if (randomElement.includes('💗') || randomElement.includes('❤️')) {
+        element.className = 'heart';
+      } else if (randomElement.includes('🌿') || randomElement.includes('🍃')) {
+        element.className = 'leaf';
+      } else {
+        element.className = 'flower';
+      }
+      
+      // Random properties
+      element.style.left = Math.random() * 100 + 'vw';
+      element.style.animationDuration = 5 + Math.random() * 10 + 's';
+      element.style.animationDelay = Math.random() * 5 + 's';
+      element.style.fontSize = (15 + Math.random() * 20) + 'px';
+      
+      floatingElements.appendChild(element);
+    }
+
+    // Add subtle tilt effect on mouse move
+    document.addEventListener('mousemove', (e) => {
+      const letter = document.querySelector('.letter-container');
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+      letter.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+
+    // Reset tilt when mouse leaves
+    document.addEventListener('mouseleave', () => {
+      const letter = document.querySelector('.letter-container');
+      letter.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  </script>
+</body>
+</html>
