@@ -4,6 +4,34 @@ exports.handler = async () => {
         body: JSON.stringify([
 
 
+            {
+
+        id: 27,
+        title: "Virus",
+        description: "Bangla Series",
+        thumbnail: "assets/virus.png",
+        videoUrl: "https://streamtape.com/e/lw1yVLRe8WCzp9",
+        year: 2023,
+        genre: "Thriller/Mystery",
+        duration: "1H 50M",
+        isBseries : true,
+        isHot : true,
+        isSouth : false,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: false,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "series"
+
+          },
+
+
              {
 
         id: 26,
