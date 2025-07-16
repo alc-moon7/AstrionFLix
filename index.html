@@ -34,6 +34,7 @@
             --glass-border: rgba(100, 200, 255, 0.2);
             --success-color: #00ffc8;
             --error-color: #ff3d71;
+            --zoom-factor: 0.65; /* 35% zoom-out */
         }
 
         [data-theme="light"] {
@@ -71,10 +72,17 @@
                 radial-gradient(circle at 90% 80%, rgba(255, 50, 150, 0.1) 0%, transparent 20%),
                 radial-gradient(ellipse at center, var(--bg-primary) 0%, var(--bg-tertiary) 100%);
             background-attachment: fixed;
+            /* Apply zoom-out effect */
+            transform: scale(var(--zoom-factor));
+            transform-origin: top left;
+            width: calc(100% / var(--zoom-factor));
+            height: calc(100% / var(--zoom-factor));
         }
 
         html {
             scroll-behavior: smooth;
+            height: 100%;
+            overflow: hidden;
         }
 
         /* Cosmic Nebula Background */
@@ -1441,6 +1449,39 @@
             
             .logout-icon {
                 font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .hero-buttons {
+                gap: 0.5rem;
+            }
+
+            .video-card {
+                min-width: 120px;
+            }
+
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+            
+            .search-box input {
+                width: 120px;
+            }
+            
+            .carousel-arrow {
+                width: 2rem;
+                height: 2rem;
+                font-size: 0.8rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
     </style>
