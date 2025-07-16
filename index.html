@@ -1511,19 +1511,19 @@
                     Your browser does not support the video tag.
                 </video>
                 <div class="hero-content">
-                    <h2>Mission: Impossible : The Final Reckoning</h2>
+                    <h2>S Line</h2>
                     <div class="hero-meta">
-                        <span>Action/Thriller</span>
-                        <span>PG 13+</span>
+                        <span>Thriller</span>
+                        <span>PG 18+</span>
                         <span>2025</span>
-                        <span>2h 15m</span>
+                        <span>6 Episode</span>
                     </div>
                     <p>
-                       Ethan Hunt and the IMF team race against time to find the Entity, a rogue artificial intelligence that can destroy mankind.
+                      A young woman with the ability to see mysterious red connections between lovers discovers her secret gift is no longer unique when special glasses granting ...
                     </p>
                     <div class="hero-buttons">
                         <button class="btn btn-primary" id="playFeatured">
-                            <i class="fas fa-play"></i> Play
+                            <i class="fas fa-play"></i> Watch Trailer
                         </button>
                         <button class="icon-btn">
                             <i class="fas fa-plus"></i>
@@ -1771,6 +1771,7 @@
             
             // Create carousel sections
             const sections = [
+                { id: 'slineCarousel', title: 'S Line Season 1 (k-Series)', filter: video => video.isSlines },
                 { id: 'hotCarousel', title: 'Newly Added Content', filter: video => video.isHot },
                 { id: 'trendingCarousel', title: 'Trending Now', filter: video => video.isTrending },
                 { id: 'arrivedCarousel', title: 'Squid Game Season 3', filter: video => video.isArrived },
@@ -2078,7 +2079,7 @@
             
             // Play featured video
             playFeatured.addEventListener('click', () => {
-                openVideoModal('https://streamtape.com/e/0eeMR4rmKeSbPzl');
+                openVideoModal('https://www.youtube.com/embed/SKg4dviRqzY');
             });
             
             // Carousel arrows

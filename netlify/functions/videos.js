@@ -2,6 +2,61 @@ exports.handler = async () => {
     return {
         statusCode: 200,
         body: JSON.stringify([
+                {
+
+        id: 29,
+        title: "S Line S1- E2",
+        description: "Korean Series",
+        thumbnail: "assets\sline-1.jpg",
+        videoUrl: "https://streamtape.com/e/mYwg8Mkkppib3AA",
+        year: 2025,
+        genre: "Thriller/Mystery",
+        duration: "1H 50M",
+        isSlines : true,
+        isBseries : false,
+        isHot : true,
+        isSouth : false,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: false,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "series"
+
+          },
+
+               {
+
+        id: 28,
+        title: "S Line S1- E1",
+        description: "Korean Series",
+        thumbnail: "assets\sline-1.jpg",
+        videoUrl: "https://streamtape.com/e/dZVZG17w93skm77",
+        year: 2025,
+        genre: "Thriller/Mystery",
+        duration: "1H 50M",
+        isSlines : true,
+        isBseries : false,
+        isHot : true,
+        isSouth : false,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: true,
+        isHorror: false,
+        isNew: false,
+        isPopular: false,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "series"
+
+          },
 
 
             {
