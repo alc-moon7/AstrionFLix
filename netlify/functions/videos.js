@@ -5,7 +5,7 @@ exports.handler = async () => {
                 {
 
         id: 29,
-        title: "S Line S1- E2",
+        title: "S Line S1- E1",
         description: "Korean Series",
         thumbnail: "assets/sline-1.jpg",
         videoUrl: "https://streamtape.com/e/dZVZG17w93skm77",
@@ -33,7 +33,7 @@ exports.handler = async () => {
                {
 
         id: 28,
-        title: "S Line S1- E1",
+        title: "S Line S1- E2",
         description: "Korean Series",
         thumbnail: "assets/sline-2.jpg",
         videoUrl: "https://streamtape.com/e/mYwg8Mkkppib3AA",
