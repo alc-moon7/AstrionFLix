@@ -57,6 +57,60 @@ exports.handler = async () => {
         type: "series"
 
           },
+           {
+
+        id: 29,
+        title: "S Line S1- E3",
+        description: "Korean Series",
+        thumbnail: "assets/sline-3.jpg",
+        videoUrl: "https://streamtape.com/e/KGkj280pmoc0OgJ",
+        year: 2025,
+        genre: "Thriller/Mystery",
+        duration: "1H 50M",
+        isSlines : true,
+        isBseries : false,
+        isHot : true,
+        isSouth : false,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: false,
+        isHorror: false,
+        isNew: false,
+        isPopular: false,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "series"
+
+          },
+           {
+
+        id: 30,
+        title: "S Line S1- E4",
+        description: "Korean Series",
+        thumbnail: "assets/sline-4.jpg",
+        videoUrl: "https://streamtape.com/e/kzrrmvjVKdSOK24",
+        year: 2025,
+        genre: "Thriller/Mystery",
+        duration: "1H 50M",
+        isSlines : true,
+        isBseries : false,
+        isHot : true,
+        isSouth : false,
+        isHindi: false,
+        isDaagi: false,
+        isArrived: false,
+        isTrending: false,
+        isHorror: false,
+        isNew: false,
+        isPopular: false,
+        isAction: false,
+        isDrama: false,
+        isComedy: false,
+        type: "series"
+
+          },
 
 
             {
