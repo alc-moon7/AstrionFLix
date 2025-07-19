@@ -18,6 +18,8 @@ exports.handler = async (event) => {
         'Moon': '123456',
         'Premium': '123456',
         'premium': '123456',
+        'Guest': '123456',
+        'guest': '123456',
     };
 
     if (validCredentials[username] && validCredentials[username] === password) {
