@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD Nafisa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #f0f0f0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Splash screen animation */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(10, 10, 25, 0.95);
+            animation: fadeOut 0.8s ease-out 2.7s forwards;
+        }
+
+        .splash-image {
+            width: 90%;
+            height: 80%;
+            max-width: 1200px;
+            background-image: url('https://gecdesigns.com/_next/image?url=https%3A%2F%2Fasset.gecdesigns.com%2Fimg%2Fwallpapers%2Fhappy-birthday-wishes-delicious-cake-with-balloons-on-a-yellow-background-sr02012508-cover.webp&w=1440&q=75');
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+            box-shadow: 0 0 50px rgba(0, 200, 255, 0.6);
+            animation: 
+                zoomIn 2.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+                rotate 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.3) translateY(50px);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(-15deg);
+            }
+            100% {
+                transform: rotate(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* Main content layout */
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        /* Video container styling */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.8s ease-out 3s forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+
+        /* Unmute overlay */
+        .unmute-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            opacity: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .unmute-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #unmute-btn {
+            background: linear-gradient(to right, #00c9ff, #92fe9d);
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            color: #121212;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 4px 15px rgba(0, 201, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #unmute-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 201, 255, 0.7);
+        }
+
+        #unmute-btn:focus {
+            outline: 3px solid rgba(255, 255, 255, 0.8);
+            outline-offset: 2px;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 5;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, #00c9ff, #92fe9d);
+            transition: width 0.2s linear;
+        }
+
+        /* Replay button */
+        .replay-btn {
+            background: transparent;
+            border: 2px solid #00c9ff;
+            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            color: #f0f0f0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: 
+                background 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .replay-btn:hover {
+            background: rgba(0, 201, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .replay-btn:focus {
+            outline: 3px solid rgba(0, 201, 255, 0.5);
+            outline-offset: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .splash-image {
+                width: 95%;
+                height: 75%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 1.5rem;
+            }
+            
+            .splash-image {
+                height: 65%;
+            }
+            
+            #unmute-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-container {
+                padding: 1rem;
+            }
+            
+            .splash-image {
+                height: 55%;
+                animation: 
+                    zoomIn 2.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+                    rotate 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+            
+            .replay-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .video-container {
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash screen with animated image -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-image"></div>
+    </div>
+
+    <!-- Main content container -->
+    <main class="content-container">
+        <h1 class="title">HBD</h1>
+        <p class="subtitle">Watch the magic unfold </p>
+        
+        <!-- Video container with controls -->
+        <div class="video-container">
+            <video id="main-video" playsinline>
+                <!-- Mobile-optimized video placeholder -->
+                <source src="assets/video.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+            
+            <!-- Unmute overlay for mobile -->
+            <div id="unmute-overlay" class="unmute-overlay">
+                <button id="unmute-btn" aria-label="Tap to unmute video">
+                    <svg viewBox="0 0 24 24" width="36" height="36">
+                        <path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" fill="currentColor"/>
+                    </svg>
+                    <span>Tap to Unmute</span>
+                </button>
+            </div>
+            
+            <!-- Progress bar -->
+            <div id="progress-container" class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+        </div>
+        
+        <!-- Replay button -->
+        <button id="replay-btn" class="replay-btn" aria-label="Replay animation">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z" fill="currentColor"/>
+            </svg>
+            Replay Experience
+        </button>
+    </main>
+
+    <div class="footer">
+        <p>Happy BirthDay To Nafisa Tabassum Sraboni🎂❤️</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const splashScreen = document.getElementById('splash-screen');
+            const video = document.getElementById('main-video');
+            const unmuteOverlay = document.getElementById('unmute-overlay');
+            const unmuteBtn = document.getElementById('unmute-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const replayBtn = document.getElementById('replay-btn');
+            
+            // Mobile detection
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            // Autoplay video after splash animation
+            setTimeout(() => {
+                // Hide splash screen
+                splashScreen.style.display = 'none';
+                
+                // Attempt to play video with sound
+                video.muted = isMobile; // Mute by default on mobile
+                
+                video.play()
+                    .then(() => {
+                        // Successfully started
+                        if (!isMobile) {
+                            unmuteOverlay.classList.add('hidden');
+                        } else {
+                            // On mobile, we start muted
+                            unmuteOverlay.classList.remove('hidden');
+                        }
+                    })
+                    .catch(error => {
+                        // Autoplay failed
+                        handleAutoplayFailure();
+                    });
+            }, 3000); // Match animation duration (3s)
+
+            // Handle autoplay restrictions
+            function handleAutoplayFailure() {
+                video.muted = true;
+                video.play()
+                    .then(() => {
+                        // Show unmute overlay
+                        unmuteOverlay.classList.remove('hidden');
+                    })
+                    .catch(error => {
+                        console.error('Video playback failed:', error);
+                    });
+            }
+
+            // Unmute button functionality
+            unmuteBtn.addEventListener('click', () => {
+                video.muted = false;
+                unmuteOverlay.classList.add('hidden');
+            });
+
+            // Video progress bar
+            video.addEventListener('timeupdate', () => {
+                const progress = (video.currentTime / video.duration) * 100;
+                progressBar.style.width = `${progress}%`;
+            });
+
+            // Replay functionality
+            replayBtn.addEventListener('click', () => {
+                // Reset video
+                video.currentTime = 0;
+                video.muted = isMobile;
+                video.play();
+                
+                // Hide unmute overlay
+                unmuteOverlay.classList.add('hidden');
+                
+                // Show splash screen
+                splashScreen.style.display = 'flex';
+                splashScreen.style.animation = 'none';
+                
+                // Trigger reflow to restart animation
+                setTimeout(() => {
+                    splashScreen.style.animation = '';
+                    
+                    // Replay sequence after animation
+                    setTimeout(() => {
+                        splashScreen.style.display = 'none';
+                        video.play().catch(handleAutoplayFailure);
+                    }, 3000);
+                }, 10);
+            });
+
+            // Handle visibility changes
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    video.pause();
+                } else {
+                    video.play().catch(error => {
+                        console.log('Playback interrupted:', error);
+                    });
+                }
+            });
+
+            // Keyboard accessibility
+            replayBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    replayBtn.click();
+                }
+            });
+
+            unmuteBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    unmuteBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
