@@ -9,7 +9,7 @@ exports.handler = async () => {
         title: "Saiyaara",
         description: "Hindi Movies",
         thumbnail: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/saiyaara-et00447951-1752737895.jpg",
-        videoUrl: "https://streamtape.com/e/dZVZG17w93skm77",
+        videoUrl: "https://streamtape.com/e/Xzo2O3PaPdfDRJD",
         year: 2025,
         genre: "Thriller/Mystery",
         duration: "1H 50M",
