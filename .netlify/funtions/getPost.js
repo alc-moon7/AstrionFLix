@@ -1,7 +1,7 @@
 // netlify/functions/getPost.js
-import { neon } from '@neondatabase/serverless';
+import { neon } from '@netlify/neon';
 
-const sql = neon(process.env.NETLIFY_DATABASE_URL);
+const sql = neon();
 
 export const handler = async (event) => {
   const headers = {

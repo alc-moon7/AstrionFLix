@@ -1,7 +1,4 @@
-import { neon } from '@neondatabase/serverless';
-
-const sql = neon(process.env.NETLIFY_DATABASE_URL);
-
+// netlify/functions/getMaintenanceTime.js
 export const handler = async (event) => {
   const headers = {
     'Content-Type': 'application/json',
@@ -10,6 +7,7 @@ export const handler = async (event) => {
     'Access-Control-Allow-Headers': 'Content-Type',
   };
 
+  // Handle preflight OPTIONS request
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
@@ -18,6 +16,7 @@ export const handler = async (event) => {
     };
   }
 
+  // Only allow GET requests
   if (event.httpMethod !== 'GET') {
     return {
       statusCode: 405,
@@ -27,26 +26,24 @@ export const handler = async (event) => {
   }
 
   try {
-    const [settings] = await sql`
-      SELECT maintenance_end, maintenance_start, is_active 
-      FROM site_settings 
-      WHERE id = 1
-    `;
+    // Calculate maintenance times (29 days from now in GMT)
+    const now = new Date();
+    const maintenanceStart = new Date(now.toISOString());
+    const maintenanceEnd = new Date(now.toISOString());
+    maintenanceEnd.setDate(maintenanceEnd.getDate() + 29);
 
-    if (!settings) {
-      return {
-        statusCode: 404,
-        headers,
-        body: JSON.stringify({ error: 'Maintenance settings not found' }),
-      };
-    }
+    // Format dates for display
+    const formatDate = (date) => {
+      return date.toUTCString().replace('GMT', 'GMT');
+    };
 
-    // Return GMT timestamps
     const response = {
-      maintenanceEnd: settings.maintenance_end,
-      maintenanceStart: settings.maintenance_start,
-      isActive: settings.is_active,
-      serverTime: new Date().toISOString(), 
+      maintenanceEnd: maintenanceEnd.toISOString(),
+      maintenanceStart: maintenanceStart.toISOString(),
+      isActive: true,
+      serverTime: now.toISOString(),
+      displayStart: formatDate(maintenanceStart),
+      displayEnd: formatDate(maintenanceEnd),
     };
 
     return {
@@ -55,13 +52,13 @@ export const handler = async (event) => {
       body: JSON.stringify(response),
     };
   } catch (error) {
-    console.error('Database error:', error);
+    console.error('Error:', error);
     return {
       statusCode: 500,
       headers,
       body: JSON.stringify({ 
         error: 'Failed to fetch maintenance time',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        message: error.message 
       }),
     };
   }
