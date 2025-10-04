@@ -310,10 +310,39 @@
     </div>
 
     <script>
-        // Set maintenance period to exactly 29 days from now in GMT
-        const startDate = new Date();
-        const endDate = new Date();
-        endDate.setDate(endDate.getDate() + 29);
+        // Function to get or create the end date in localStorage
+        function getEndDate() {
+            let endDate = localStorage.getItem('maintenanceEndDate');
+            
+            if (!endDate) {
+                // Create a new end date (29 days from now) if it doesn't exist
+                const newEndDate = new Date();
+                newEndDate.setDate(newEndDate.getDate() + 29);
+                localStorage.setItem('maintenanceEndDate', newEndDate.toISOString());
+                return newEndDate;
+            }
+            
+            return new Date(endDate);
+        }
+
+        // Function to get the start date (end date minus 29 days)
+        function getStartDate(endDate) {
+            let startDate = localStorage.getItem('maintenanceStartDate');
+            
+            if (!startDate) {
+                // Create start date if it doesn't exist
+                const newStartDate = new Date(endDate);
+                newStartDate.setDate(newStartDate.getDate() - 29);
+                localStorage.setItem('maintenanceStartDate', newStartDate.toISOString());
+                return newStartDate;
+            }
+            
+            return new Date(startDate);
+        }
+
+        // Get the stored end date or create a new one
+        const endDate = getEndDate();
+        const startDate = getStartDate(endDate);
         
         // Format dates for display
         document.getElementById('start-time').textContent = `Started: ${formatDate(startDate)} GMT`;
@@ -332,6 +361,10 @@
                 clearInterval(countdownFunction);
                 document.querySelector(".countdown").innerHTML = "<div class='countdown-item'><span class='countdown-value'>00</span><span class='countdown-label'>We're Back!</span></div>";
                 document.getElementById('progress-bar').style.width = '100%';
+                
+                // Remove the stored dates since maintenance is complete
+                localStorage.removeItem('maintenanceEndDate');
+                localStorage.removeItem('maintenanceStartDate');
                 return;
             }
             
