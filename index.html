@@ -26,6 +26,7 @@
             align-items: center;
             text-align: center;
             padding: 20px;
+            overflow: hidden;
         }
 
         @keyframes gradient {
@@ -35,26 +36,31 @@
         }
 
         .maintenance-container {
-            max-width: 800px;
+            max-width: 700px;
             background-color: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 40px;
+            padding: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .logo {
-            font-size: 2.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             color: #fff;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            line-height: 1.4;
         }
 
         .maintenance-icon {
-            font-size: 5rem;
-            margin: 20px 0;
+            font-size: 4rem;
+            margin: 10px 0;
             color: #fdbb2d;
             animation: pulse 2s infinite;
         }
@@ -66,41 +72,41 @@
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             font-weight: 600;
         }
 
         p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
             opacity: 0.9;
         }
 
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
+            gap: 15px;
+            margin: 20px 0;
         }
 
         .countdown-item {
             background: rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            padding: 15px;
-            min-width: 100px;
+            border-radius: 8px;
+            padding: 10px;
+            min-width: 70px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .countdown-value {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             display: block;
         }
 
         .countdown-label {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-top: 5px;
@@ -111,8 +117,8 @@
             width: 100%;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
-            height: 10px;
-            margin: 30px 0;
+            height: 8px;
+            margin: 15px 0;
             overflow: hidden;
         }
 
@@ -130,91 +136,131 @@
         }
 
         .contact-info {
-            margin-top: 30px;
-            padding-top: 20px;
+            margin-top: 15px;
+            padding-top: 15px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .contact-info p {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 15px;
         }
 
         .social-icon {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
         }
 
         .social-icon:hover {
             background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         @media (max-width: 768px) {
             .maintenance-container {
-                padding: 30px 20px;
+                padding: 20px 15px;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             
             .countdown {
-                gap: 10px;
+                gap: 8px;
             }
             
             .countdown-item {
-                min-width: 70px;
-                padding: 10px;
+                min-width: 60px;
+                padding: 8px;
             }
             
             .countdown-value {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .maintenance-container {
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+                margin-bottom: 5px;
+            }
+            
+            .maintenance-icon {
+                font-size: 3rem;
+                margin: 5px 0;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+            
+            p {
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+            
+            .countdown {
+                margin: 10px 0;
             }
         }
     </style>
 </head>
 <body>
     <div class="maintenance-container">
-        <div class="logo">We’re currently updating our servers for better performance. The site will be back shortly. Thanks for your patience!</div>
-        <div class="maintenance-icon">🔧</div>
-        <h1>We're Under Maintenance</h1>
-        <p>We're currently working hard to improve our website and bring you an even better experience. We apologize for any inconvenience and appreciate your patience.</p>
-        
-        <div class="progress-container">
-            <div class="progress-bar"></div>
-        </div>
-        
-        <p>We expect to be back online in:</p>
-        
-        <div class="countdown">
-            <div class="countdown-item">
-                <span class="countdown-value" id="days">00</span>
-                <span class="countdown-label">Days</span>
+        <div>
+            <div class="logo">We're currently updating our servers for better performance. The site will be back shortly. Thanks for your patience!</div>
+            <div class="maintenance-icon">🔧</div>
+            <h1>We're Under Maintenance</h1>
+            <p>We're currently working hard to improve our website and bring you an even better experience. We apologize for any inconvenience and appreciate your patience.</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar"></div>
             </div>
-            <div class="countdown-item">
-                <span class="countdown-value" id="hours">00</span>
-                <span class="countdown-label">Hours</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-value" id="minutes">00</span>
-                <span class="countdown-label">Minutes</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-value" id="seconds">00</span>
-                <span class="countdown-label">Seconds</span>
+            
+            <p>We expect to be back online in:</p>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="days">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="minutes">00</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="seconds">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
             </div>
         </div>
         
@@ -236,9 +282,8 @@
         const countDownDate = new Date();
         countDownDate.setDate(countDownDate.getDate() + 3);
 
-        // Update the countdown every 1 second
+       
         const countdownFunction = setInterval(function() {
-            // Get today's date and time
             const now = new Date().getTime();
             
             const distance = countDownDate - now;
@@ -248,7 +293,7 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
-            // Display the result
+         
             document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
             document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
