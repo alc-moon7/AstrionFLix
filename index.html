@@ -152,6 +152,14 @@
             opacity: 0.8;
         }
 
+        .server-status {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
         .contact-info {
             margin-top: 20px;
             padding-top: 20px;
@@ -191,6 +199,17 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
         }
 
+        .loading {
+            opacity: 0.7;
+        }
+
+        .error-message {
+            background: rgba(178, 31, 31, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
         @media (max-width: 768px) {
             .maintenance-container {
                 padding: 25px 20px;
@@ -219,6 +238,11 @@
             
             .countdown-label {
                 font-size: 0.75rem;
+            }
+
+            .time-info {
+                flex-direction: column;
+                gap: 5px;
             }
         }
 
@@ -265,6 +289,10 @@
             <h1>We're Under Maintenance</h1>
             <p>We're currently updating our servers for better performance. The site will be back shortly. Thanks for your patience!</p>
             
+            <div class="server-status" id="server-status">
+                <i class="fas fa-sync fa-spin"></i> Connecting to server...
+            </div>
+            
             <div class="progress-container">
                 <div class="progress-bar" id="progress-bar"></div>
             </div>
@@ -277,19 +305,19 @@
             
             <div class="countdown">
                 <div class="countdown-item">
-                    <span class="countdown-value" id="days">29</span>
+                    <span class="countdown-value" id="days">--</span>
                     <span class="countdown-label">Days</span>
                 </div>
                 <div class="countdown-item">
-                    <span class="countdown-value" id="hours">00</span>
+                    <span class="countdown-value" id="hours">--</span>
                     <span class="countdown-label">Hours</span>
                 </div>
                 <div class="countdown-item">
-                    <span class="countdown-value" id="minutes">00</span>
+                    <span class="countdown-value" id="minutes">--</span>
                     <span class="countdown-label">Minutes</span>
                 </div>
                 <div class="countdown-item">
-                    <span class="countdown-value" id="seconds">00</span>
+                    <span class="countdown-value" id="seconds">--</span>
                     <span class="countdown-label">Seconds</span>
                 </div>
             </div>
@@ -310,97 +338,179 @@
     </div>
 
     <script>
-        // Function to get or create the end date in localStorage
-        function getEndDate() {
-            let endDate = localStorage.getItem('maintenanceEndDate');
-            
-            if (!endDate) {
-                // Create a new end date (29 days from now) if it doesn't exist
-                const newEndDate = new Date();
-                newEndDate.setDate(newEndDate.getDate() + 29);
-                localStorage.setItem('maintenanceEndDate', newEndDate.toISOString());
-                return newEndDate;
-            }
-            
-            return new Date(endDate);
-        }
-
-        // Function to get the start date (end date minus 29 days)
-        function getStartDate(endDate) {
-            let startDate = localStorage.getItem('maintenanceStartDate');
-            
-            if (!startDate) {
-                // Create start date if it doesn't exist
-                const newStartDate = new Date(endDate);
-                newStartDate.setDate(newStartDate.getDate() - 29);
-                localStorage.setItem('maintenanceStartDate', newStartDate.toISOString());
-                return newStartDate;
-            }
-            
-            return new Date(startDate);
-        }
-
-        // Get the stored end date or create a new one
-        const endDate = getEndDate();
-        const startDate = getStartDate(endDate);
-        
-        // Format dates for display
-        document.getElementById('start-time').textContent = `Started: ${formatDate(startDate)} GMT`;
-        document.getElementById('end-time').textContent = `Est. Completion: ${formatDate(endDate)} GMT`;
-        
-        // Update the countdown every 1 second
-        const countdownFunction = setInterval(function() {
-            // Get current GMT time
-            const now = new Date();
-            
-            // Calculate time remaining
-            const distance = endDate - now;
-            
-            // If countdown is finished
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.querySelector(".countdown").innerHTML = "<div class='countdown-item'><span class='countdown-value'>00</span><span class='countdown-label'>We're Back!</span></div>";
-                document.getElementById('progress-bar').style.width = '100%';
+        class MaintenanceCountdown {
+            constructor() {
+                this.endDate = null;
+                this.startDate = null;
+                this.countdownInterval = null;
+                this.serverTimeOffset = 0;
                 
-                // Remove the stored dates since maintenance is complete
-                localStorage.removeItem('maintenanceEndDate');
-                localStorage.removeItem('maintenanceStartDate');
-                return;
+                this.init();
             }
-            
-            // Calculate days, hours, minutes and seconds
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            // Update countdown display
-            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-            
-            // Update progress bar
-            const totalDuration = 29 * 24 * 60 * 60 * 1000; // 29 days in milliseconds
-            const elapsed = totalDuration - distance;
-            const progressPercent = (elapsed / totalDuration) * 100;
-            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
-            
-        }, 1000);
-        
-        // Helper function to format dates
-        function formatDate(date) {
-            const options = { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                timeZone: 'GMT'
-            };
-            return date.toLocaleDateString('en-US', options);
+
+            async init() {
+                try {
+                    await this.fetchMaintenanceTime();
+                    this.startCountdown();
+                } catch (error) {
+                    this.handleError(error);
+                }
+            }
+
+            async fetchMaintenanceTime() {
+                this.updateStatus('Connecting to server...', 'loading');
+                
+                const response = await fetch('/.netlify/functions/getMaintenanceTime');
+                
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // Calculate server time offset
+                const serverTime = new Date(data.serverTime);
+                const localTime = new Date();
+                this.serverTimeOffset = serverTime - localTime;
+
+                // Use GMT times from server
+                this.endDate = new Date(data.maintenanceEnd);
+                this.startDate = new Date(data.maintenanceStart);
+
+                this.updateStatus('Connected to server - GMT time synchronized', 'success');
+                
+                // Update displayed times
+                document.getElementById('start-time').textContent = `Started: ${this.formatGMTDate(this.startDate)}`;
+                document.getElementById('end-time').textContent = `Est. Completion: ${this.formatGMTDate(this.endDate)}`;
+            }
+
+            startCountdown() {
+                if (!this.endDate) {
+                    throw new Error('No maintenance end date available');
+                }
+
+                this.countdownInterval = setInterval(() => {
+                    this.updateCountdown();
+                }, 1000);
+
+                // Initial update
+                this.updateCountdown();
+            }
+
+            updateCountdown() {
+                const now = this.getCurrentGMTTime();
+                const distance = this.endDate - now;
+
+                if (distance <= 0) {
+                    this.handleMaintenanceComplete();
+                    return;
+                }
+
+                // Calculate time units
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Update countdown display
+                document.getElementById("days").textContent = days.toString().padStart(2, '0');
+                document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+
+                // Update progress bar
+                this.updateProgressBar(now);
+            }
+
+            updateProgressBar(currentTime) {
+                const totalDuration = this.endDate - this.startDate;
+                const elapsed = currentTime - this.startDate;
+                let progressPercent = (elapsed / totalDuration) * 100;
+                
+                // Clamp between 0 and 100
+                progressPercent = Math.max(0, Math.min(100, progressPercent));
+                
+                document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            }
+
+            getCurrentGMTTime() {
+                // Apply server time offset to get accurate GMT time
+                return new Date(Date.now() + this.serverTimeOffset);
+            }
+
+            formatGMTDate(date) {
+                return date.toUTCString().replace('GMT', 'GMT');
+            }
+
+            updateStatus(message, type = 'info') {
+                const statusElement = document.getElementById('server-status');
+                let icon = '🔧';
+                
+                switch (type) {
+                    case 'loading':
+                        icon = '<i class="fas fa-sync fa-spin"></i>';
+                        break;
+                    case 'success':
+                        icon = '<i class="fas fa-check-circle"></i>';
+                        break;
+                    case 'error':
+                        icon = '<i class="fas fa-exclamation-triangle"></i>';
+                        break;
+                }
+                
+                statusElement.innerHTML = `${icon} ${message}`;
+                
+                if (type === 'error') {
+                    statusElement.className = 'server-status error-message';
+                } else {
+                    statusElement.className = 'server-status';
+                }
+            }
+
+            handleMaintenanceComplete() {
+                clearInterval(this.countdownInterval);
+                
+                document.querySelector(".countdown").innerHTML = `
+                    <div class="countdown-item">
+                        <span class="countdown-value">00</span>
+                        <span class="countdown-label">We're Back!</span>
+                    </div>
+                `;
+                
+                document.getElementById('progress-bar').style.width = '100%';
+                this.updateStatus('Maintenance completed! Site is back online.', 'success');
+                
+                // Redirect after 5 seconds
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 5000);
+            }
+
+            handleError(error) {
+                console.error('Maintenance countdown error:', error);
+                this.updateStatus(`Error: ${error.message} - Using fallback timer`, 'error');
+                
+                // Fallback: 29 days from now in GMT
+                this.endDate = new Date();
+                this.endDate.setDate(this.endDate.getDate() + 29);
+                this.startDate = new Date();
+                
+                document.getElementById('start-time').textContent = `Started: ${this.formatGMTDate(this.startDate)}`;
+                document.getElementById('end-time').textContent = `Est. Completion: ${this.formatGMTDate(this.endDate)} (Fallback)`;
+                
+                this.startCountdown();
+            }
         }
-        
+
+        // Initialize the maintenance countdown when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new MaintenanceCountdown();
+        });
+
         // Initialize progress bar
         document.getElementById('progress-bar').style.width = '0%';
     </script>
