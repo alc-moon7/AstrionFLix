@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "Love and Monsters",
+    "description": "Movie",
+    "thumbnail": "assets/love-and-monsters.png",
+    "videoUrl": "https://www.youtube.com/embed/iKGJ4xinDto",
+    "year": 2020,
+    "genre": "Adventure/Comedy",
+    "duration": "1H 49M",
+    "isSlines": false,
+    "isBseries": false,
+    "isHot": true,
+    "isSouth": false,
+    "isHindi": false,
+    "isDaagi": false,
+    "isArrived": false,
+    "isTrending": true,
+    "isHorror": false,
+    "isNew": false,
+    "isPopular": true,
+    "isAction": true,
+    "isDrama": false,
+    "isComedy": false,
+    "type": "movie"
+  }
+]
